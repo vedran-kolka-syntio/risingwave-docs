@@ -18,6 +18,7 @@ import styles from './styles.module.css';
 import { ThemeClassNames, useWindowSize } from '@docusaurus/theme-common';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import FeedbackForm from '@site/src/components/FeedbackForm';
+
 export default function DocItem(props) {
   const { content: DocContent } = props;
   const { metadata, frontMatter, assets } = DocContent;
@@ -28,7 +29,7 @@ export default function DocItem(props) {
     toc_min_heading_level: tocMinHeadingLevel,
     toc_max_heading_level: tocMaxHeadingLevel,
   } = frontMatter;
-  const {description, title} = metadata;
+  const { description, title } = metadata;
   const image = assets.image ?? frontMatter.image; // We only add a title if:
   // - user asks to hide it with front matter
   // - the markdown content does not already contain a top-level h1 heading
@@ -40,6 +41,7 @@ export default function DocItem(props) {
     !hideTableOfContents && DocContent.toc && DocContent.toc.length > 0;
   const renderTocDesktop =
     canRenderTOC && (windowSize === 'desktop' || windowSize === 'ssr');
+
   return (
     <>
       <Seo
@@ -97,7 +99,7 @@ export default function DocItem(props) {
             <DocPaginator previous={metadata.previous} next={metadata.next} />
 
             {metadata.editUrl && (
-              <div className="col margin-top--sm" style={{ padding: "0!mportant" }}>
+              <div className="col margin-top--sm" style={{ padding: "0 !mportant" }}>
                 <FeedbackForm editUrl={metadata.editUrl} />
               </div>
             )}

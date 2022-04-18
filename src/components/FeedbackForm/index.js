@@ -25,7 +25,7 @@ const BreakLine = styled("div")({
   width: "100%",
   height: "1px",
   backgroundColor: "#999999",
-  marginTop: "70px",
+  marginTop: "20px",
   marginBottom: "20px"
 })
 
