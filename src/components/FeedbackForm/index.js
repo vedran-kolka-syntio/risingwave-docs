@@ -5,9 +5,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import PullRequestIcon from "@site/static/img/github_pr.svg";
 import IssueIcon from "@site/static/img/github_issue.svg";
 import { Button, TextField, Stack, Collapse } from '@mui/material';
-
 import CommunityLinkGroup from '@site/src/components/LinkGroup';
-
 import { sendFeedback } from "@site/src/api/feedback";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
@@ -24,7 +22,8 @@ const FormHeaderTitle = styled("span")({
 const BreakLine = styled("div")({
   width: "100%",
   height: "1px",
-  backgroundColor: "#999999",
+  backgroundColor: "var(--ifm-color-emphasis-300)",
+  padding: "0",
   marginTop: "20px",
   marginBottom: "20px"
 })
