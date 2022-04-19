@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import PullRequestIcon from "@site/static/img/github_pr.svg";
 import IssueIcon from "@site/static/img/github_issue.svg";
 import { Button, TextField, Stack, Collapse } from '@mui/material';
@@ -72,8 +70,7 @@ export default function FeedbackForm(props) {
       const valid = validation();
       if (valid.success) {
         await sendFeedback(formData.description, Number(formData.like));
-      }
-      else {
+      } else {
         toast.error(valid.msg, {
           position: "top-center",
           autoClose: 2000,
@@ -166,18 +163,21 @@ export default function FeedbackForm(props) {
 
           {/* right group */}
           <div className={styles.rightGroup}>
-            <FormHeaderTitle>Help us make this doc better!</FormHeaderTitle>
-            <div classnAME={styles.rightGroupButtonGroup}>
+            <div className={styles.textContainer}>
+              <FormHeaderTitle>Help us make this doc better!</FormHeaderTitle>
+            </div>
+            <div className={styles.rightGroupButtonGroup}>
               <Button
-                sx={{ margin: "2px" }}
+                sx={{ textTransform: "none", color: "var(--ifm-link-color)" }}
                 variant="outlined"
+                className={styles.mr12}
                 onClick={() => window.open("https://github.com/singularity-data/risingwave-docs/issues/new")}
-                startIcon={<IssueIcon />}
+                startIcon={<IssueIcon sx={{ color: "var(--ifm-link-color)" }} />}
               >
                 File an issue
               </Button>
               <Button
-                sx={{ margin: "2px" }}
+                sx={{ textTransform: "none" }}
                 variant="outlined"
                 onClick={() => window.open(props.editUrl)}
                 startIcon={<PullRequestIcon />}

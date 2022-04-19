@@ -1,76 +1,91 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.leftGroup{
-    display: flex;
-    flex-direction: row;
+.leftGroup {
+  display: flex;
+  flex-direction: row;
 }
 
-.rightGroup{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.rightGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.leftGroupContainer{
-    display: flex;
-    flex-direction: column;
+.textContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
 }
 
-.rightGroupButtonGroup{
-    display: flex;
-    flex-direction: row;
+.mr12 {
+  margin-right: 12px !important;
 }
 
-.rightGroupButton{
-    margin-right: 5px;
+.fontSizeH4 {
+  font-size: var(--ifm-h4-font-size) !important;
 }
 
-.communityLinkContainer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.leftGroupContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.linkDesc{
-    display: none;
+.rightGroupButtonGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.rightGroupButton {
+  margin-right: 5px;
+}
+
+.communityLinkContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.linkDesc {
+  display: none;
 }
 
 @media screen and (max-width: 1440px) {
-    .container{
-        flex-direction: column;
-    }
-    .rightGroup{
-        margin-top: 10px;
-    }
+  .container {
+    flex-direction: column;
+  }
+  .rightGroup {
+    margin-top: 10px;
+  }
 }
 
 @media screen and (max-width: 996px) {
-    .linkDesc{
-        display: block;
-    }
+  .linkDesc {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 540px) {
-    .rightGroup{
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .rightGroup {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .communityLinkContainer{
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .communityLinkContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media screen and (max-width: 350px) {
-    .rightGroupButtonGroup{
-        flex-direction: column;
-    }
-    .rightGroupButton{
-        margin-top: 5px;
-    }
+  .rightGroupButtonGroup {
+    flex-direction: column;
+  }
+  .rightGroupButton {
+    margin-top: 5px;
+  }
 }
