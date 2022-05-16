@@ -49,12 +49,10 @@ const sidebars = {
     ]
   },
   {
-    type: `category`,
+    type: `doc`,
+    id: `glossary`,
     label: `Glossary`,
-    collapsible: true,
-    collapsed: true,
-    items: [`glossary/stream-processing`]
-  }
+  },
  ]
 };
 

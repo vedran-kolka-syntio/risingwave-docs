@@ -1,5 +1,5 @@
 ---
-id: stream-processing
+id: sample
 title: sample
 slug: /glossary/sample
 ---
