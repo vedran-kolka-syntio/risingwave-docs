@@ -47,6 +47,13 @@ const sidebars = {
     collapsed: false,
     items: [`sql-ov`, `sql-data-types`, `sql-operators`, `sql-statements`,
     ]
+  },
+  {
+    type: `category`,
+    label: `Glossary`,
+    collapsible: true,
+    collapsed: true,
+    items: [`glossary/stream-processing`]
   }
  ]
 };
