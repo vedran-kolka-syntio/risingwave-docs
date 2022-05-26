@@ -30,7 +30,7 @@ RisingWave supports the following SQL commands.
 
 ## Notes about EXPLAIN
 
-`EXPLAIN` prints an execution plan of query to help you understand how it runs internally. It's useful to explain a batch query (`SELECT`) or a streaming query (`CREATE MATERIALIZED VIEW`).
+`EXPLAIN` prints the execution plan of a query to help you understand how it runs internally. It's useful to explain a batch query (`SELECT`) or a streaming query (`CREATE MATERIALIZED VIEW`).
 
 Example:
 
