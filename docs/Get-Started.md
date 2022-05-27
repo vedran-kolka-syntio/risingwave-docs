@@ -60,7 +60,7 @@ Ensure you have Docker intalled on your machine. For installation instructions, 
 
 2. Run RisingWave from the Docker image.
     ```sh
-    docker run -it ghcr.io/singularity-data/risingwave:latest playground
+    docker run -it --network host ghcr.io/singularity-data/risingwave:latest playground
     ```
 
 ### Build from source (Linux & macOS)
@@ -134,7 +134,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     To run RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
   
     ```shell
-    ./risingwave playground
+    ./risedev playground
     ```
 
     All services in RisingWave will be started.
@@ -155,7 +155,7 @@ You can now issue SQL queries to manage your streams and data.
 
 ## Connect to a streaming source
 
-Use `CREATE SOURCE` statement to connect to a streaming source.
+Use `CREATE SOURCE` command to connect to a streaming source.
 
 To connect to a Kafka topic: 
 
@@ -201,7 +201,7 @@ AS
     SELECT COUNT(id) as no_of_trips,
     SUM(distance) as total_distance,
     SUM(duration) as total_duration,
-    SUM(distance) / SUM(duration) as avg_speed,
+    SUM(distance) / SUM(duration) as avg_speed
     FROM taxi_trips;
 ```
 
@@ -269,7 +269,7 @@ AS
 ```
 
 
-For the complete list of supported SQL statements, see [Statements](Statements.md).
+For the complete list of supported SQL commands, see [Commands](Commands.md).
 
 
 
