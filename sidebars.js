@@ -42,6 +42,21 @@ const sidebars = {
         }
       ]
     },
+
+    {
+      type: 'category',
+      label: `Tutorial`,
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: `doc`,
+          id: `perform-real-time-ad-performance-analysis`,
+          label: `Perform real-time ad performance analysi`,
+        },
+      ]
+    },
+
    {
     type: `doc`,
     id: `sources`,
