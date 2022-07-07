@@ -56,6 +56,11 @@ const sidebars = {
           id: 'tutorials/perform-real-time-ad-performance-analysis',
           label: 'Perform real-time ad performance analysis',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/perform-real-time-ad-performance-analysis',
+          label:
+        },
       ]
     },
 
