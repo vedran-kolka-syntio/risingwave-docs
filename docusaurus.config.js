@@ -14,16 +14,14 @@ const config = {
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
+  organizationName: "RisingWave Community", // Usually your GitHub org/user name.
+  projectName: "RisingWave", // Usually your repo name.
 
   presets: [
     [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        gtag: {
-          trackingID: "G-VG98SVDEYE",
-          anonymizeIP: true,
-        },
         docs: {
           lastVersion: "current",
           sidebarPath: require.resolve("./sidebars.js"),
@@ -55,15 +53,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      colorMode: {
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
-      },
       navbar: {
-        title: "",
+        title: "RisingWave",
         logo: {
           alt: "RisingWave Logo",
-          src: "img/logo-title.svg",
+          src: "img/logo.svg",
         },
         items: [
           // {
@@ -126,7 +120,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community.`,
       },
       prism: {
-        additionalLanguages: ["sql"],
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
       },
       algolia: {
         appId: "AL59AMDUO6",
@@ -150,22 +145,6 @@ const config = {
     docsUrl: "https://www.risingwave.dev",
     requestUrl: "https://github.com/singularity-data/risingwave-docs/issues/new?body=",
   },
-  scripts: [
-    {
-      src: "https://asvd.github.io/syncscroll/syncscroll.js",
-      async: true,
-    },
-  ],
 };
 
-async function createConfig() {
-  const customLight = (await import("./src/utils/prismLight.mjs")).default;
-  const customDark = (await import("./src/utils/prismDark.mjs")).default;
-  // @ts-expect-error: we know it exists, right
-  config.themeConfig.prism.theme = customLight;
-  // @ts-expect-error: we know it exists, right
-  config.themeConfig.prism.darkTheme = customDark;
-  return config;
-}
-
-module.exports = createConfig;
+module.exports = config;
