@@ -11,7 +11,7 @@
 }
 
 button.requestButton {
-  font-family: NotoSans;
+  font-family: NotoSans NotoSansSC-Regular;
   text-transform: none;
   font-size: 13px;
   color: #7798ef;

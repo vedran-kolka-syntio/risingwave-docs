@@ -17,7 +17,7 @@
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: NotoSans;
+  --ifm-font-family-base: NotoSans, NotoSansSC-Regular, sans-serif;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
@@ -52,6 +52,7 @@ h4 {
     url(/static/font/NotoSans-Regular.woff) format("woff");
   font-weight: normal;
   font-style: normal;
+  unicode-range: U+020-622;
 }
 
 @font-face {
@@ -84,6 +85,12 @@ h4 {
     url(/static/font/NotoSans-ExtraLight.woff) format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: NotoSansSC-Regular;
+  src: local("NotoSansSC-Regular"), url(/static/font/NotoSansSC-Regular.otf) format("opentype");
+  unicode-range: U+020-622;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
