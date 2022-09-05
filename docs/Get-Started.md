@@ -85,10 +85,10 @@ Then, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-d
 git clone https://github.com/risingwavelabs/risingwave-demo.git
 ```
 
-Now navigate to the `docker` directory and start the cluster from the docker-compose file.
+Now navigate to the `risingwave-demo` directory and start the cluster from the docker-compose file.
 
 ```shell
-cd docker
+cd risingwave-demo
 docker-compose up -d
 ```
 
