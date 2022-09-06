@@ -28,6 +28,9 @@ UPDATE table_name
 <Button href="sql-select.md" variant="contained">`SELECT`</Button>
 <Button href="#example" variant="outlined">ExampleExample</Button>
 <Button disabled href="#example" variant="outlined">ExampleExample</Button>
+<button type="submit">Submit</button>
+<button type="button">Button</button>
+<button type="reset">Reset</button>
 
 ## Example
 
