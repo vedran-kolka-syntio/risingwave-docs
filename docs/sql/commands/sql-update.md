@@ -24,6 +24,10 @@ UPDATE table_name
 |**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.|
 |**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
 
+<Button variant="text">Text</Button>
+<Button href="sql-select.md" variant="contained">`SELECT`</Button>
+<Button href="#example" variant="outlined">ExampleExample</Button>
+<Button disabled href="#example" variant="outlined">ExampleExample</Button>
 
 ## Example
 
