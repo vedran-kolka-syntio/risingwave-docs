@@ -25,9 +25,6 @@ UPDATE table_name
 |**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
 
 
-<button type="submit">Submit</button>
-<button type="button">Button</button>
-<button type="reset">Reset</button>
 
 ## Example
 
