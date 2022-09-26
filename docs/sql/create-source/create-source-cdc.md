@@ -10,7 +10,7 @@ Use the SQL statement below to connect RisingWave to a CDC source.
 
 :::note
 
-Currently, RisingWave only supports materialized CDC sources with primary keys, and the data format must be Debezium_JSON.
+Currently, RisingWave only supports materialized CDC sources with primary keys, and the data format must be Debezium JSON.
 
 :::
 
