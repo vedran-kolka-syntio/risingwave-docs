@@ -220,11 +220,7 @@ const sidebars = {
     ],
     },
 
-  {
-    type: 'doc',
-    id: 'release-notes',
-    label: 'Release notes'
-    },
+    'sql/sql-queries',
   ]
     
 };
