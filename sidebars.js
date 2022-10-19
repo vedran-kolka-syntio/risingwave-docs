@@ -243,8 +243,11 @@ const sidebars = {
       },
     ],
     },
-
-    'sql/sql-queries',
+    {
+      type: 'doc',
+      id: 'sql/queries',
+      label: 'Queries',
+    }, 
   ]
     
 };
