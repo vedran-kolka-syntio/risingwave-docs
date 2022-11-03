@@ -101,6 +101,11 @@ const sidebars = {
           id: 'tutorials/clickstream-analysis',
           label: 'Clickstream analysis',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/real-time-ad-performance-analysis',
+          label: 'Real-time ad performance analysis',
+        },
       ]
     },
 
