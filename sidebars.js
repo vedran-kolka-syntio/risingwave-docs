@@ -103,8 +103,8 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'tutorials/real-time-ad-performance-analysis',
-          label: 'Real-time ad performance analysis',
+          id: 'tutorials/live-stream-metrics-analysis',
+          label: 'Live stream metrics analysis',
         },
       ]
     },
