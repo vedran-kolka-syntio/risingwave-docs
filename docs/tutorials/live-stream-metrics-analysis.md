@@ -7,7 +7,7 @@ description: RisingWave makes it possible to analyze live stream metrics in a lo
 
 ## Overview
 
-Live streaming has become a popular form of entertainment where streamers can interact with their audience in real-time. Not only do streamers want to keep a high view count, but they also want to maintain a high-quality stream to ensure the viewing experience is enjoyable for their audience.
+Live streaming has become a popular form of entertainment where streamers can interact with their audience in real time. Not only do streamers want to keep a high view count, but they also want to maintain a high-quality stream to ensure the viewing experience is enjoyable for their audience.
 
 There are numerous metrics to keep track of when sustaining a stable live stream. One of the most common metrics is how long the stream was frozen. Streamers and viewers do not want a stream frozen for long as it disrupts the experience.
 
@@ -97,8 +97,8 @@ SELECT
     window_start AS report_ts,
     room_id,
     SUM(video_total_freeze_duration) AS video_total_freeze_duration,
-    AVG(video_lost_pps) as video_lost_pps,
-    AVG(video_rtt) as video_rtt
+    AVG(video_lost_pps) AS video_lost_pps,
+    AVG(video_rtt) AS video_rtt
 FROM
     TUMBLE(
         live_stream_metrics,
@@ -140,7 +140,7 @@ The first materialized view will track the number of unique viewers on the entir
 CREATE MATERIALIZED VIEW total_user_visit_1min AS
 SELECT
     window_start AS report_ts,
-    COUNT(DISTINCT user_id) as uv
+    COUNT(DISTINCT user_id) AS uv
 FROM
     TUMBLE(
         live_stream_metrics,
@@ -175,7 +175,7 @@ The second materialized view will track each streamer’s unique viewers every m
 CREATE MATERIALIZED VIEW room_user_visit_1min AS
 SELECT
     window_start AS report_ts,
-    COUNT(DISTINCT user_id) as uv,
+    COUNT(DISTINCT user_id) AS uv,
     room_id
 FROM
     TUMBLE(
