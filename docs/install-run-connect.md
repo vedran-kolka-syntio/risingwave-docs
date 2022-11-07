@@ -180,4 +180,5 @@ psql -h localhost -p 4566 -d dev -U root
     
 You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](query-manage-data.md).
 
+You can now [connect a streaming source to RisingWave](/docs/latest/sql-create-source) and [issue SQL queries to manage your data](/docs/latest/query-manage-data).
 
