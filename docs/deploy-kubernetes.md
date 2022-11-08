@@ -89,7 +89,7 @@ kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-ope
 ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" default>
+<TabItem value="s3" label="etcd+S3">
 
 RisingWave supports using Amazon S3 as the object storage.
 
@@ -131,7 +131,7 @@ risingwave-etcd-minio   True      etcd            MinIO             30s
 ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" default>
+<TabItem value="s3" label="etcd+S3">
 
 ```
 NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
@@ -172,7 +172,7 @@ By default, the Operator creates a service for the frontend component, through w
     ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" default>
+<TabItem value="s3" label="etcd+S3" >
 
     ```
     psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
@@ -183,7 +183,7 @@ By default, the Operator creates a service for the frontend component, through w
 
 
 </TabItem>
-<TabItem value="nodeport" label="NodePort" default>
+<TabItem value="nodeport" label="NodePort" >
 
 You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 
@@ -213,7 +213,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" default>
+<TabItem value="s3" label="etcd+S3">
 
     ```
     export RISINGWAVE_NAME=risingwave-etcd-s3
@@ -229,7 +229,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 
 
 </TabItem>
-<TabItem value="loadbalancer" label="LoadBalancer" default>
+<TabItem value="loadbalancer" label="LoadBalancer">
 
 If you are using EKS, GCP, or other managed Kubernetes services provided by cloud vendors, you can expose the Service to the public network with a load balancer in the cloud. 
 
@@ -259,7 +259,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" default>
+<TabItem value="s3" label="etcd+S3">
 
     ```
     export RISINGWAVE_NAME=risingwave-etcd-s3
