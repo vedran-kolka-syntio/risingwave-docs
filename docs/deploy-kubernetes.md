@@ -35,13 +35,13 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
 1. Create a cluster by running the following command.
 
-    ```
+    ```shell
     kind create cluster
     ```
 
 1. ***(Optional)*** Check if the cluster is created properly by running the following command.
 
-    ```
+    ```shell
     kubectl cluster-info
     ```
 
@@ -59,13 +59,14 @@ Before the deployment, ensure that the following requirements are satisfied.
 1. [Install cert-manager](https://cert-manager.io/docs/installation/).
 
 1. Install the Operator by running the following command.
-    ```
+
+    ```shell
     kubectl apply -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
 
 1. ***(Optional)*** Check if the Pods are running by running the following commands.
 
-    ```
+    ```shell
     kubectl -n cert-manager get pods
     kubectl -n risingwave-operator-system get pods
     ```
@@ -78,13 +79,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO" default>
+<TabItem value="minio" label="etcd+MinIO">
 
 RisingWave supports using MinIO as the object storage.
 
 Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-minio.yaml
 ```
 
@@ -97,7 +98,7 @@ RisingWave supports using Amazon S3 as the object storage.
 
 1. Create a Secret with the name ‘s3-credentials’ by running the following command.
 
-    ```
+    ```shell
     kubectl create secret generic s3-credentials —from-literal AccessKeyID=${ACCESS_KEY} —from-literal SecretAccessKey=${SECRET_ACCESS_KEY} —from-literal Region=${AWS_REGION}
     ```
 
@@ -105,7 +106,7 @@ RisingWave supports using Amazon S3 as the object storage.
 
 1. Deploy a RisingWave instance with S3 as the object storage by running the following command.
 
-    ```
+    ```shell
     kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-s3.yaml
     ```
 
@@ -116,24 +117,28 @@ RisingWave supports using Amazon S3 as the object storage.
 
 You can check the status of the RisingWave instance by running the following command.
 
-```
+```shell
 kubectl get risingwave
 ```
 
 If the instance is running properly, the output should look like this:
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO" default>
-    ```
-    NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-    risingwave-etcd-minio   True      etcd            MinIO             30s
-    ```
+<TabItem value="minio" label="etcd+MinIO">
+
+```
+NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave-etcd-minio   True      etcd            MinIO             30s
+```
+
 </TabItem>
 <TabItem value="s3" label="etcd+S3">
-    ```
-    NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-    risingwave-etcd-s3      True      etcd            S3                30s
-    ```
+
+```
+NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave-etcd-s3      True      etcd            S3                30s
+```
+
 </TabItem>
 </Tabs>
 
@@ -141,7 +146,7 @@ If the instance is running properly, the output should look like this:
 ## Connect to RisingWave
 
 <Tabs>
-<TabItem value="clusterip" label="ClusterIP" default>
+<TabItem value="clusterip" label="ClusterIP">
 
 By default, the Operator creates a service for the frontend component, through which you can interact with RisingWave, with the type of `ClusterIP`. But it is not accessible outside Kubernetes. Therefore, you need to create a standalone Pod for PostgreSQL inside Kubernetes.
 
@@ -149,30 +154,30 @@ By default, the Operator creates a service for the frontend component, through w
 
 1. Create a Pod by running the following command.
 
-    ```
+    ```shell
     kubectl apply -f examples/psql/psql-console.yaml
     ```
 
 1. Attach to the Pod by running the following command so that you can execute commands inside the container.
 
-    ```
+    ```shell
     kubectl exec -it psql-console bash
     ```
 
 1. Connect to RisingWave via psql by running the following command.
     <Tabs groupId="storage_selection">
-    <TabItem value="minio" label="etcd+MinIO" default>
+    <TabItem value="minio" label="etcd+MinIO">
 
-        ```
-        psql -h risingwave-etcd-minio-frontend -p 4567 -d dev -U root
-        ```
+    ```shell
+    psql -h risingwave-etcd-minio-frontend -p 4567 -d dev -U root
+    ```
 
     </TabItem>
     <TabItem value="s3" label="etcd+S3">
 
-        ```
-        psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
-        ```
+    ```shell
+    psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
+    ```
 
     </TabItem>
     </Tabs>
@@ -197,28 +202,28 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 
 1. Connect to RisingWave by running the following commands on the Node.
     <Tabs groupId="storage_selection">
-    <TabItem value="minio" label="etcd+MinIO" default>
+    <TabItem value="minio" label="etcd+MinIO">
 
-        ```
-        export RISINGWAVE_NAME=risingwave-etcd-minio
-        export RISINGWAVE_NAMESPACE=default
-        export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
-        export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-minio
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
 
-        psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
-        ```
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
 
     </TabItem>
     <TabItem value="s3" label="etcd+S3">
 
-        ```
-        export RISINGWAVE_NAME=risingwave-etcd-s3
-        export RISINGWAVE_NAMESPACE=default
-        export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
-        export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
 
-        psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
-        ```
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
 
     </TabItem>
     </Tabs>
@@ -242,34 +247,32 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     ```
 
 1. Connect to RisingWave with the following commands.
-    <div style={{marginLeft:"2rem"}}>
     <Tabs groupId="storage_selection">
-    <TabItem value="minio" label="etcd+MinIO" default>
+    <TabItem value="minio">
 
-        ```
-        export RISINGWAVE_NAME=risingwave-etcd-minio
-        export RISINGWAVE_NAMESPACE=default
-        export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
-        export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-minio
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
 
-        psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
-        ```
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
 
     </TabItem>
-    <TabItem value="s3" label="etcd+S3">
+    <TabItem value="s3">
 
-        ```
-        export RISINGWAVE_NAME=risingwave-etcd-s3
-        export RISINGWAVE_NAMESPACE=default
-        export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
-        export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
 
-        psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
-        ```
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
 
     </TabItem>
     </Tabs>
-    </div>
 
 </TabItem>
 </Tabs>
