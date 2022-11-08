@@ -51,7 +51,7 @@ const sidebars = {
           link: {type: 'doc', id: 'install-run-connect'},
           label: 'Install, run, and connect to RisingWave',
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: 'doc',

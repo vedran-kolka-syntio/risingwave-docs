@@ -11,38 +11,27 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
 ## Prerequisites
 
-* Install kubectl
+* **[Install kubectl](http://pwittrock.github.io/docs/tasks/tools/install-kubectl/)**
+
+    Ensure that the Kubernetes command-line tool [kubectl](https://kubernetes.io/docs/reference/kubectl/) is installed in your environment.
+
+* **[Install psql](https://www.postgresql.org/download/)**
+
+    Ensure that the PostgreSQL interactive terminal [psql](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
+
+* **[Install and run Docker Desktop](https://docs.docker.com/get-docker/)**
     
-    kubectl is a Kubernetes command-line tool for deploying and managing applications on Kubernetes.
-
-    Ensure that kubectl is installed in your environment. See [Install and Set Up kubectl](http://pwittrock.github.io/docs/tasks/tools/install-kubectl/) for instructions.
-
-* Install psql
-
-    Ensure that the PostgreSQL interactive terminal [psql](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment. See [PostgreSQL Downloads](https://www.postgresql.org/download/) for instructions.
-
-* Install and run Docker Desktop
-    
-    Ensure that [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed in your environment and running. See [Get Docker](https://docs.docker.com/get-docker/) for instructions.
+    Ensure that [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed in your environment and running.
 
 
 
 ## Create a Kubernetes cluster
 
-Before deployment, ensure that the following requirements are satisfied.
+**Steps:**
 
-* [Docker](https://docs.docker.com/install/) version ≥ 18.09
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) version ≥ 1.12
-* [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) version ≥ 0.8.0
-* For Linux, set the value of the sysctl parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
+1. [Install kind](https://kind.sigs.k8s.io/docs/user/quick-start#installation).
 
-Follow the steps to create a Kubernetes cluster.
-
-1. Install kind.
-
-    [kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker containers as cluster nodes. 
-
-    See [kind Installation](https://kind.sigs.k8s.io/docs/user/quick-start#installation) for instructions. You can see the available tags of kind on [Docker Hub](https://hub.docker.com/r/kindest/node/tags).
+    [kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker containers as cluster nodes. You can see the available tags of kind on [Docker Hub](https://hub.docker.com/r/kindest/node/tags).
 
 1. Create a cluster by running the following command.
 
@@ -50,7 +39,7 @@ Follow the steps to create a Kubernetes cluster.
     kind create cluster
     ```
 
-1. ***(Optional)*** Check if the cluster is created successfully by running the following command.
+1. ***(Optional)*** Check if the cluster is created properly by running the following command.
 
     ```
     kubectl cluster-info
@@ -58,7 +47,16 @@ Follow the steps to create a Kubernetes cluster.
 
 ## Deploy the Operator
 
-1. Install [cert-manager](https://cert-manager.io/docs/installation/).
+Before the deployment, ensure that the following requirements are satisfied.
+
+* Docker version ≥ 18.09
+* kubectl version ≥ 1.12
+* kind version ≥ 0.8.0
+* For Linux, set the value of the sysctl parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
+
+**Steps:**
+
+1. [Install cert-manager](https://cert-manager.io/docs/installation/).
 
 1. Install the Operator by running the following command.
     ```
@@ -74,6 +72,8 @@ Follow the steps to create a Kubernetes cluster.
 
 ## Deploy a RisingWave instance
 
+Select an object storage service for data persistence.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -82,7 +82,7 @@ import TabItem from '@theme/TabItem';
 
 RisingWave supports using MinIO as the object storage.
 
-Deploy a RisingWave instance with MinIO as the object storage by running the following command.
+Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-minio.yaml
@@ -92,6 +92,8 @@ kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-ope
 <TabItem value="s3" label="etcd+S3" default>
 
 RisingWave supports using Amazon S3 as the object storage.
+
+**Steps:**
 
 1. Create a Secret with the name ‘s3-credentials’ by running the following command.
 
@@ -110,6 +112,7 @@ RisingWave supports using Amazon S3 as the object storage.
 </TabItem>
 </Tabs>
 
+<br />
 
 You can check the status of the RisingWave instance by running the following command.
 
@@ -146,6 +149,8 @@ risingwave-etcd-s3      True      etcd            S3                30s
 
 By default, the Operator creates a service for the frontend component, through which you can interact with RisingWave, with the type of `ClusterIP`. But it is not accessible outside Kubernetes. Therefore, you need to create a standalone Pod for PostgreSQL inside Kubernetes.
 
+**Steps:**
+
 1. Create a Pod by running the following command.
 
     ```
@@ -159,15 +164,30 @@ By default, the Operator creates a service for the frontend component, through w
     ```
 
 1. Connect to RisingWave via psql by running the following command.
+<Tabs groupId="storage_selection">
+<TabItem value="minio" label="etcd+MinIO" default>
 
     ```
-    psql -h risingwave-etcd-s3/minio-frontend -p 4567 -d dev -U root
+    psql -h risingwave-etcd-minio-frontend -p 4567 -d dev -U root
     ```
+
+</TabItem>
+<TabItem value="s3" label="etcd+S3" default>
+
+    ```
+    psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
+    ```
+
+</TabItem>
+</Tabs>
+
 
 </TabItem>
 <TabItem value="nodeport" label="NodePort" default>
 
 You can connect to RisingWave from Nodes such as EC2 in Kubernetes
+
+**Steps:**
 
 1. Set the Service type to `NodePort`.
 
@@ -180,9 +200,11 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     ```
 
 1. Connect to RisingWave by running the following commands on the Node.
+<Tabs groupId="storage_selection">
+<TabItem value="minio" label="etcd+MinIO" default>
 
     ```
-    export RISINGWAVE_NAME=risingwave-etcd-s3/minio
+    export RISINGWAVE_NAME=risingwave-etcd-minio
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
@@ -191,9 +213,27 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     ```
 
 </TabItem>
+<TabItem value="s3" label="etcd+S3" default>
+
+    ```
+    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
+
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
+
+</TabItem>
+</Tabs>
+
+
+</TabItem>
 <TabItem value="loadbalancer" label="LoadBalancer" default>
 
 If you are using EKS, GCP, or other managed Kubernetes services provided by cloud vendors, you can expose the Service to the public network with a load balancer in the cloud. 
+
+**Steps:**
 
 1. Set the Service type to `LoadBalancer`.
 
@@ -206,9 +246,11 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     ```
 
 1. Connect to RisingWave with the following commands.
+<Tabs groupId="storage_selection">
+<TabItem value="minio" label="etcd+MinIO" default>
 
     ```
-    export RISINGWAVE_NAME=risingwave-etcd-s3/minio
+    export RISINGWAVE_NAME=risingwave-etcd-minio
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
@@ -216,11 +258,28 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
     ```
 
+</TabItem>
+<TabItem value="s3" label="etcd+S3" default>
+
+    ```
+    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
+
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
 
 </TabItem>
 </Tabs>
 
-    
+
+
+</TabItem>
+</Tabs>
+
+<br />
+
 You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](query-manage-data.md).
 
 
