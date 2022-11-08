@@ -47,9 +47,18 @@ const sidebars = {
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'install-run-connect',
+          type: 'category',
+          link: {type: 'doc', id: 'install-run-connect'},
           label: 'Install, run, and connect to RisingWave',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            {
+              type: 'doc',
+              id: 'deploy-kubernetes',
+              label: 'Deploy in Kubernetes',
+            }
+          ]
         },
         {
           type: 'category', 
