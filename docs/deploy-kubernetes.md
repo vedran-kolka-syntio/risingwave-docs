@@ -124,20 +124,16 @@ If the instance is running properly, the output should look like this:
 
 <Tabs groupId="storage_selection">
 <TabItem value="minio" label="etcd+MinIO" default>
-
-```
-NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave-etcd-minio   True      etcd            MinIO             30s
-```
-
+    ```
+    NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+    risingwave-etcd-minio   True      etcd            MinIO             30s
+    ```
 </TabItem>
 <TabItem value="s3" label="etcd+S3">
-
-```
-NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave-etcd-s3      True      etcd            S3                30s
-```
-
+    ```
+    NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+    risingwave-etcd-s3      True      etcd            S3                30s
+    ```
 </TabItem>
 </Tabs>
 
@@ -172,7 +168,7 @@ By default, the Operator creates a service for the frontend component, through w
     ```
 
 </TabItem>
-<TabItem value="s3" label="etcd+S3" >
+<TabItem value="s3" label="etcd+S3">
 
     ```
     psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
