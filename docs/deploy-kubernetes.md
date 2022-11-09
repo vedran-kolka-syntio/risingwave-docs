@@ -248,7 +248,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
 1. Connect to RisingWave with the following commands.
     <Tabs groupId="storage_selection">
-    <TabItem value="minio">
+    <TabItem value="minio" label="etcd+MinIO">
 
     ```shell
     export RISINGWAVE_NAME=risingwave-etcd-minio
@@ -260,7 +260,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     ```
 
     </TabItem>
-    <TabItem value="s3">
+    <TabItem value="s3" label="etcd+S3">
 
     ```shell
     export RISINGWAVE_NAME=risingwave-etcd-s3
