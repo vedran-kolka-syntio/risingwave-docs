@@ -8,7 +8,10 @@ const buttonSize = 36;
 
 const LinkButton = styled("div")({
   backgroundColor: "#EBEDF0",
-  padding: "10px",
+  // padding: "10px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   width: `${buttonSize}px`,
   height: `${buttonSize}px`,
   borderRadius: "10px",
