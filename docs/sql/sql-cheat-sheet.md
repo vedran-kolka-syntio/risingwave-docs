@@ -102,13 +102,12 @@ CREATE USER user_name
     [ [ WITH ] option [ ... ] ]
 ```
 
-### DELETE
+### CREATE VIEW
 
-Permanently removes rows from a table.
+Creates a non-materialized view, which runs every time the view is referenced in a query. A non-materialized view can be created based on sources, tables, views, or indexes.
 
 ```sql
-DELETE FROM table_name
-WHERE condition;
+CREATE VIEW view_name [ ( column_name [, ...] ) ] AS select_query;
 ```
 
 ### DELETE
