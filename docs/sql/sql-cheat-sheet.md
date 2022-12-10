@@ -61,7 +61,7 @@ WITH (
 
 Establishes the connection to a source. After a connection is established, RisingWave will be able to read data from the source. Sources are resources that RisingWave can read data from.
 
-Supported sources include: [Kafka](../create-source/create-source-kafka-redpanda.md). [Redpanda](../create-source/create-source-kafka-redpanda.md), [Pulsar](../create-source/create-source-pulsar.md), [Kinesis](../create-source/create-source-kinesis.md), [PostgreSQL CDC](../create-source/create-source-cdc.md), and [MySQL CDC](../create-source/create-source-cdc.md).
+Supported sources include: [Kafka](create-source/create-source-kafka-redpanda.md). [Redpanda](create-source/create-source-kafka-redpanda.md), [Pulsar](create-source/create-source-pulsar.md), [Kinesis](create-source/create-source-kinesis.md), [PostgreSQL CDC](create-source/create-source-cdc.md), and [MySQL CDC](create-source/create-source-cdc.md).
 
 Supported formats includes Avro, JSON, Protobuf, and Debezium JSON.
 
