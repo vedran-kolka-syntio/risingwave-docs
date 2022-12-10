@@ -195,7 +195,12 @@ const sidebars = {
         type: 'doc',
         id: 'sql/sql-data-types',
         label: 'Data types',
-      },  
+      },
+      {
+        type: 'doc',
+        id: 'sql/sql-cheat-sheet',
+        label: 'SQL Cheat Sheet',
+      },   
       {
       type: 'category',
       label: 'Functions and operators',
