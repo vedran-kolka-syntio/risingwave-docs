@@ -199,7 +199,7 @@ const sidebars = {
       {
         type: 'doc',
         id: 'sql/sql-cheat-sheet',
-        label: 'SQL Cheat Sheet',
+        label: 'SQL cheat sheet',
       },   
       {
       type: 'category',
