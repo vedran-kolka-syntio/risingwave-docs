@@ -36,7 +36,7 @@ const config = {
             },
             "0.1.14": {
               label: "0.1.14 (current)",
-              path: "/current",
+              path: "/latest",
               badge: false,
               banner: "none",
             },

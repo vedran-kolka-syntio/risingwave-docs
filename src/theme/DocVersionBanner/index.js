@@ -6,7 +6,7 @@ export default function DocVersionBannerWrapper(props) {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (!location.pathname.includes("current")) {
+    if (!location.pathname.includes("latest")) {
       setShown(true);
     }
   }, [location.pathname]);
@@ -20,9 +20,9 @@ export default function DocVersionBannerWrapper(props) {
         >
           <div>You are viewing the documentation of an unreleased version of RisingWave.</div>
           <b>
-            <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}>
+            <a href={`/docs/latest/${location.pathname.split("/").at(-2)}`}>
               {" "}
-              Switch to the current public release →
+              Switch to the latest public release →
             </a>
           </b>
         </div>
