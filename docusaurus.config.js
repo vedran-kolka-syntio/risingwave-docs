@@ -64,7 +64,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      hideableSidebar: true,
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
       colorMode: {
         disableSwitch: false,
         respectPrefersColorScheme: true,
