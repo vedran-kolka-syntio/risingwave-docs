@@ -139,9 +139,6 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 <Tabs>
 <TabItem value="avro" label="Avro" default>
 
@@ -205,9 +202,6 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs>
 <TabItem value="avro" label="Avro" default>
