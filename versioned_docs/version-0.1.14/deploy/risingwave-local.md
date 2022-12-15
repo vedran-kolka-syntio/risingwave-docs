@@ -38,7 +38,7 @@ import TabItem from '@theme/TabItem';
 3. Start RisingWave in playground mode.
 
     ```shell
-    ./risedev playground    #Or ./risedev p
+    ./risingwave playground
     ```
 
 </TabItem>
@@ -90,10 +90,10 @@ import TabItem from '@theme/TabItem';
 
 3. Start RisingWave.
 
-    To start RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
+    To start RisingWave, in the terminal, navigate to the directory where RisingWave is cloned, and run the following command.
   
     ```shell
-    ./risingwave playground
+    ./risedev playground
     ```
 
 
