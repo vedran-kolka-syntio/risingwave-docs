@@ -44,10 +44,10 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 <TabItem value="source" label="Build from source (Linux & macOS)">
 
-1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
+1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository and enter the directory.
 
     ```shell
-    git clone https://github.com/risingwavelabs/risingwave.git
+    git clone https://github.com/risingwavelabs/risingwave.git && cd risingwave
     ```
 
 2. Install dependencies.
@@ -90,7 +90,7 @@ import TabItem from '@theme/TabItem';
 
 3. Start RisingWave.
 
-    To start RisingWave, in the terminal, navigate to the directory where RisingWave is cloned, and run the following command.
+    To compile and start RisingWave, you can use RiseDev, the developer tool for RisingWave.
   
     ```shell
     ./risedev playground
