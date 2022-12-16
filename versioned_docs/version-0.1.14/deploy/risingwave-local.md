@@ -90,7 +90,7 @@ import TabItem from '@theme/TabItem';
 
 3. Start RisingWave.
 
-    To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), the developer's tool for RisingWave.
+    To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), a tool for RisingWave developers.
   
     ```shell
     ./risedev playground    #Or ./risedev p
