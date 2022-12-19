@@ -5,10 +5,22 @@ description: Supported data sources and how to connect RisingWave to the sources
 slug: /sql-create-source
 ---
 
-Sources are resources that RisingWave can read data from. Use `CREATE SOURCE` to establish the connection to a source. After a connection is established, RisingWave will be able to read data from the source.
+Sources are resources that RisingWave can read data from. RisingWave provides a set of connectors with which you can connect to various sources.
+
+Use `CREATE SOURCE` to establish the connection to a source. After a connection is established, RisingWave will be able to read data from the source.
+
+When creating a source, you can specify if you want to create a non-materialized or materialized source.
+
+## What are materialized sources?
+
+For a non-materialized source, the streaming data is not stored in RisingWave. To store certain results in RisingWave so that you can query them later, you need to create materialized views. 
+
+For a materialized source, all streaming data from it is stored in RisingWave. As more and more data continues to be ingested, a materialized source takes up an increasing amount of storage space. 
 
 
-## Supported sources
+## Supported connectors
+
+RisingWave provides connectors for these message brokers, databases, and tools.
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
