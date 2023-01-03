@@ -42,7 +42,7 @@ This version was released on January 3, 2022.
 #### Observability
 
 - Adds metrics for the backup manager in Grafana. [#6898](https://github.com/risingwavelabs/risingwave/pull/6898)
-- RisingWave Dashboard can now fetch data from Prometheus and visualize in charts. [#6602](https://github.com/risingwavelabs/risingwave/pull/6602)
+- RisingWave Dashboard can now fetch data from Prometheus and visualize it in charts. [#6602](https://github.com/risingwavelabs/risingwave/pull/6602)
 
 ### Assets
 
