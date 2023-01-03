@@ -32,10 +32,6 @@ This version was released on January 3, 2022.
 
 #### Connectors
 
-- Adds the PostgreSQL CDC connector. Users can use this connector to ingest CDC data from PostgreSQL directly.  [#6869](https://github.com/risingwavelabs/risingwave/pull/6869)
-- Adds the MySQL CDC connector. Users can use this connector to ingest CDC data from MySQL directly.  [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481)
-- Adds the S3 source connector, with which users can ingest data in CSV format from S3 locations. For data ingestion from files, CSV is only supported format and the files must be placed on S3. [#6846](https://github.com/risingwavelabs/risingwave/pull/6846)
-- Adds the JDBC sink connector, with which users can sink data to MySQL and PostgreSQL. [#6493](https://github.com/risingwavelabs/risingwave/pull/6493)
 - Improves the handling of schema errors for Avro and Protobuf data. [#6821](https://github.com/risingwavelabs/risingwave/pull/6821)
 - Adds two options to the datagen connector to make it possible to generate increasing timestamp values. [#6591](https://github.com/risingwavelabs/risingwave/pull/6591)
 
