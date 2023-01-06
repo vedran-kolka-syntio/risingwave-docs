@@ -80,3 +80,8 @@
   font-family: Montserrat-SemiBold;
   src: url(/static/font/Montserrat-SemiBold.ttf);
 }
+
+@font-face {
+  font-family: Mulish;
+  src: url(/static/font/Mulish-Regular.ttf);
+}
