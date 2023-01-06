@@ -59,6 +59,7 @@ const config = {
         },
         theme: {
           customCss: [
+            require.resolve("./src/css/fonts.css"),
             require.resolve("./src/css/custom.css"),
             require.resolve("./src/css/buttons.css"),
           ],
