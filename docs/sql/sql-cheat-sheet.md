@@ -2,7 +2,10 @@
 id: sql-cheat-sheet
 slug: /sql-cheat-sheet
 title: SQL command cheat sheet
+description: Quick and easy SQL command reference.
 ---
+
+
 
 ### ALTER USER
 
@@ -51,7 +54,7 @@ CREATE SCHEMA IF NOT EXISTS schema_1;
 
 ### CREATE SINK
 
-Creates a sink. A sink is a connection to a stream that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
+Creates a sink. A sink is a target that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
 
 ```sql
 CREATE SINK [ IF NOT EXISTS ] sink_name 
@@ -194,10 +197,6 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 ```
 </TabItem>
 </Tabs>
-
-
-
-
 
 
 
