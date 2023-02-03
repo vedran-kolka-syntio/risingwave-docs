@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'About',
       collapsible: true,
       collapsed: false,
       items: [
@@ -41,7 +41,13 @@ const sidebars = {
           type: 'doc',
           id: 'key-concepts',
           label: 'Key concepts and terms',
-        }
+        },
+
+        {
+          type: 'doc',
+          label: 'Integrations',
+          id: 'rw-integration-summary',
+          },
       ]
     },
 
@@ -64,25 +70,17 @@ const sidebars = {
         {
           type: 'doc',
           id: 'deploy/risingwave-docker-image',
-          label: 'Run in Docker',
+          label: 'Docker',
         },
         {
-          type: 'category',
-          label: 'Set up a cluster with',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-docker-compose',
-              label: 'Docker Compose',
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-kubernetes',
-              label: 'Kubernetes',
-            }
-          ]
+          type: 'doc',
+          id: 'deploy/risingwave-docker-compose',
+          label: 'Docker Compose',
+        },
+        {
+          type: 'doc',
+          id: 'deploy/risingwave-kubernetes',
+          label: 'Kubernetes',
         },
         {
           type: 'doc',
@@ -98,7 +96,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Use cases',
       collapsible: true,
       collapsed: true,
       items: [
@@ -201,14 +199,9 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Integrations',
+      label: 'Data visualization',
       items:
       [
-        {
-        type: 'doc',
-        label: 'Overview',
-        id: 'rw-integration-summary',
-        },
         {
         type: 'doc',
         label: 'Grafana',
