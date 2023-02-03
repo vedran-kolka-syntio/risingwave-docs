@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'About',
       collapsible: true,
       collapsed: false,
       items: [
@@ -67,22 +67,14 @@ const sidebars = {
           label: 'Run in Docker',
         },
         {
-          type: 'category',
-          label: 'Set up a cluster with',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-docker-compose',
-              label: 'Docker Compose',
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-kubernetes',
-              label: 'Kubernetes',
-            }
-          ]
+          type: 'doc',
+          id: 'deploy/risingwave-docker-compose',
+          label: 'Docker Compose',
+        },
+        {
+          type: 'doc',
+          id: 'deploy/risingwave-kubernetes',
+          label: 'Kubernetes',
         },
         {
           type: 'doc',
@@ -151,6 +143,11 @@ const sidebars = {
           type: 'doc',
           label: 'CDC',
           id: 'create-source/create-source-cdc',
+        },
+        {
+          type: 'doc',
+          label: 'PostgreSQL CDC',
+          id: 'guides/ingest-from-pg-cdc',
         },
         {
           type: 'doc',
