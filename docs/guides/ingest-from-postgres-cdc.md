@@ -78,14 +78,14 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 2. Go to the **Databases** page and modify your instance to use the **pg-cdc** parameter group.
 
 <img
-  src={require('../images/pg-cdc-parameters.png').default}
+  src={require('../images/pg-cdc-parameter.png').default}
   alt="Apply modified parameter group to pg instance"
 />
 
 3. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save changes. Remember to reboot the Postgres instance to put the changes into effect.
 
 <img
-  src={require('../images/modify-instance.png').default}
+  src={require('../images/modify-instances.png').default}
   alt="Apply changes"
 />
 
