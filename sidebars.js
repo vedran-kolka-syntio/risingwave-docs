@@ -147,7 +147,7 @@ const sidebars = {
         {
           type: 'doc',
           label: 'PostgreSQL CDC',
-          id: 'guides/ingest-from-pg-cdc',
+          id: 'guides/ingest-from-postgres-cdc',
         },
         {
           type: 'doc',
