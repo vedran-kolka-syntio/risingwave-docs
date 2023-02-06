@@ -90,7 +90,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Use cases',
       collapsible: true,
       collapsed: true,
       items: [
@@ -141,7 +141,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          label: 'CDC',
+          label: 'CDC via Kafka',
           id: 'create-source/create-source-cdc',
         },
         {

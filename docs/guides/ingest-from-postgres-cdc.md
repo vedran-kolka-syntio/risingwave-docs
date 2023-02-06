@@ -165,7 +165,7 @@ Before using the native PostgreSQL CDC connector in RisingWave, you need to comp
 
 You need to download and configure the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deployment](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-deployment) section.
 
-### Create a materialized source connection using the Kafka connector
+### Create a materialized source using the Kafka connector
 
  To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON. For details
 
