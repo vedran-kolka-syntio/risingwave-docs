@@ -23,7 +23,8 @@ You can ingest CDC data from PostgreSQL in two ways:
 
 ### Set up PostgreSQL
 
-#### Set up PostgreSQL locally
+<Tabs>
+<TabItem value="pg_self_hosted" label="Self-hosted">
 
 Ensure that the `wal_value` of your Postgres is `logical`. Check by using the following query.
 
@@ -64,7 +65,9 @@ Role name  |                        Attributes                          | Member
 postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 ```
 
-#### Set up AWS RDS PostgreSQL 
+</TabItem>
+
+<TabItem value='AWS_rds_pg' label='AWS RDS PostgreSQL' >
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 
@@ -88,6 +91,9 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
   src={require('../images/modify-instances.png').default}
   alt="Apply changes"
 />
+
+</TabItem>
+</Tabs>
 
 ### Enable the connector node in RisingWave
 
@@ -159,7 +165,7 @@ To ensure all data changes are captured, you must create a materialized source c
 
 ### Set up PostgreSQL
 
-Before using the native PostgreSQL CDC connector in RisingWave, you need to complete several configurations for PostgreSQL. For details, see [Setting up PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#setting-up-postgresql). There are instructions on how to set up Postgres locally and in the cloud.
+Before using the native PostgreSQL CDC connector in RisingWave, you need to complete several configurations for PostgreSQL. For details, see [Setting up PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#setting-up-postgresql). There are instructions on how to set up the self-hosted Postgres and AWS RDS.
 
 ### Deploy the Debezium connector for PostgreSQL
 
