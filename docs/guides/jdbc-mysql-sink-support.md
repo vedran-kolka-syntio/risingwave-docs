@@ -1,7 +1,7 @@
 ---
 id: sink-to-mysql-with-jdbc
-title: Sink data from RisingWave to MySQL with JDBC connector
-description: Sink data from RisingWave to MySQL with JDBC connector.
+title: Sink data from RisingWave to AWS MySQL with JDBC connector
+description: Sink data from RisingWave to AWS MySQL with JDBC connector.
 slug: /sink-to-mysql-with-jdbc
 ---
 
@@ -9,7 +9,7 @@ In this guide, we will introduce how to sink data from RisingWave to JDBC-availa
 
 ## Set up and connect to an AWS RDS instance from MySQL
 
-### Set up an RDS Instance on AWS
+### Set up an MySQL RDS instance on AWS
 
 1. Log in to the AWS console. Search “RDS” in services and select the **RDS** panel.
 
@@ -39,7 +39,7 @@ In this guide, we will introduce how to sink data from RisingWave to JDBC-availa
   alt="Endpoint and port information"
 />
 
-### Connect to the RDS instance from 
+### Connect to the RDS instance from MySQL
 
 Now we can connect to the RDS instance. On your local machine, make sure you have installed MySQL, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters. 
 
