@@ -202,6 +202,11 @@ const sidebars = {
         id: 'sql/commands/sql-create-sink',
         label: 'Create a sink',
       },
+      {
+        type: 'doc',
+        id: 'guides/sink-to-mysql-with-jdbc',
+        label: 'Sink to AWS MySQL RDS with the JDBC connector',
+      },
     ]},
 
     {
