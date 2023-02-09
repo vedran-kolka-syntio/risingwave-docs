@@ -105,6 +105,10 @@ a[href^="https://"]::after
   display: inline-block;
 }
 
+a:has(code)::after {
+  display: none !important;
+}
+
 /* Custom Unordered List */
 .theme-doc-markdown ul li:not(.tabs__item)::marker {
   color: #909090;
