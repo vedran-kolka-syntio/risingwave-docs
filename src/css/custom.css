@@ -25,6 +25,18 @@
   --doc-sidebar-width: 260px !important;
 }
 
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.1rem;
+}
+
+.markdown > h2 {
+  --ifm-h2-font-size: 1.4rem;
+}
+
+.markdown > h3 {
+  --ifm-h3-font-size: 1.2rem;
+}
+
 /* hide home icon in breadcrumbs */
 .breadcrumbs li:first-child {
   display: none !important;
