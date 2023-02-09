@@ -5,7 +5,7 @@ description: Sink data from RisingWave to AWS MySQL with JDBC connector.
 slug: /sink-to-mysql-with-jdbc
 ---
 
-In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the feature of JDBC sink. We will create and connect to a database established on the cloud to minimize the efforts. Cloud databases can become an indispensable data sink for applications. As the largest cloud provider, AWS hosts Relational Database Services (RDS) that waive the need for setup and maintenance effort and has high availability and scalability options.
+In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. We will create and connect to a database established on the cloud to minimize the efforts. Cloud databases can become an indispensable data sink for applications. As the largest cloud provider, AWS hosts Relational Database Services (RDS) that waive the need for setup and maintenance effort and has high availability and scalability options.
 
 ## Set up and connect to an AWS RDS instance from MySQL
 
@@ -73,11 +73,7 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 ### Enable the connector node in RisingWave
 
- Please note that RisingWave starts as a cluster. To enable a JDBC connector, make sure that the connector node is enabled in the RisingWave cluster. The connector node handles the connections with upstream and downstream systems. You can enable the connector node in two ways:
- - Using the latest docker-compose file of RisingWave demo
-   The connector node is enabled by default in this docker-compose file. To learn about how to start RisingWave with this file, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
- - Using RiseDev, the developer's tool
-   Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
+ The native JDBC sink connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
 
 
 ### Sink from RisingWave
