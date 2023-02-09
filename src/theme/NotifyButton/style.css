@@ -241,7 +241,6 @@
 
 .newsletter-form input,
 .newsletter-form button {
-  -webkit-appearance: none;
   background: none;
   outline: none;
   display: block;
