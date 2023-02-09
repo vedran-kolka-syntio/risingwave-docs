@@ -90,25 +90,6 @@ h4 {
   left: -0.5rem;
 }
 
-/* external link icon */
-a[href^="http"]::after,
-a[href^="https://"]::after
-{
-  content: "";
-  width: 1rem;
-  height: 1rem;
-  margin-left: 2px;
-  background-image: url(../../static/img/icons/external-link.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: inline-block;
-}
-
-a:has(code)::after {
-  display: none !important;
-}
-
 /* Custom Unordered List */
 .theme-doc-markdown ul li:not(.tabs__item)::marker {
   color: #909090;
