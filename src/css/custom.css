@@ -17,7 +17,7 @@
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: NotoSansSC, NotoSans;
+  --ifm-font-family-base: Mulish, sans-serif;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
@@ -43,69 +43,21 @@
 }
 
 h1 {
-  font-family: NotoSans-ExtraLight !important;
+  font-family: Montserrat-ExtraLight !important;
 }
 
 h2 {
   padding-bottom: 10px;
   border-bottom: 1px solid #dbdbdb;
-  font-family: NotoSans !important;
+  font-family: Montserrat !important;
 }
 
 h3 {
-  font-family: NotoSans-Medium !important;
+  font-family: Montserrat-Medium !important;
 }
 
 h4 {
-  font-family: NotoSans-SemiBold !important;
-}
-
-@font-face {
-  font-family: NotoSansSC;
-  src: local("NotoSansSC"), url(/static/font/NotoSansSC-Regular.otf) format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  unicode-range: U+2192;
-}
-
-@font-face {
-  font-family: NotoSans;
-  src: local("NotoSans"), url(/static/font/NotoSans-Regular.ttf) format("ttf"),
-    url(/static/font/NotoSans-Regular.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-Medium;
-  src: local("NotoSans-Medium"), url(/static/font/NotoSans-Medium.ttf) format("ttf"),
-    url(/static/font/NotoSans-Medium.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-Thin;
-  src: local("NotoSans-Thin"), url(/static/font/NotoSans-Thin.ttf) format("ttf"),
-    url(/static/font/NotoSans-Thin.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-SemiBold;
-  src: local("NotoSans-SemiBold"), url(/static/font/NotoSans-SemiBold.ttf) format("ttf"),
-    url(/static/font/NotoSans-SemiBold.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-ExtraLight;
-  src: local("NotoSans-ExtraLight"), url(/static/font/NotoSans-ExtraLight.ttf) format("ttf"),
-    url(/static/font/NotoSans-ExtraLight.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
+  font-family: Montserrat-SemiBold !important;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
