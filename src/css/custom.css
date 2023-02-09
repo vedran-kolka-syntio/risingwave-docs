@@ -92,8 +92,8 @@ h4 {
 
 /* Custom Unordered List */
 .theme-doc-markdown ul li:not(.tabs__item)::marker {
-  color: #e1e1e1;
-  font-size: 1.4rem;
+  color: #909090;
+  font-size: 1.1rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
