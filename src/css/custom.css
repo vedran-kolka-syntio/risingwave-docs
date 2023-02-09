@@ -63,15 +63,25 @@ h4 {
 
 @counter-style circled-digit {
   system: fixed;
-  symbols: ➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓;
+  symbols: "\278A""\278B""\278C""\278D""\278E""\278F""\2790""\2791""\2792""\2793";
   suffix: " ";
-  font-size: 120px;
 }
 
-ol li {
+.theme-doc-markdown ol li {
   list-style-type: circled-digit;
 }
 
+[data-theme="light"] .theme-doc-markdown ol li::marker {
+  color: #a0a0a0;
+}
+
+.theme-doc-markdown ol li::marker {
+  font-size: 1.5rem;
+}
+
+/* .theme-doc-markdown ul li::marker {
+  color: #a0a0a0;
+} */
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
