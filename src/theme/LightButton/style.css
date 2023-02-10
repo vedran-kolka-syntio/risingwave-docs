@@ -32,12 +32,12 @@
 [data-theme="dark"] .light {
   box-shadow: none;
   background-color: transparent;
-  border: 1px solid #3d67d7;
+  border: 1px solid var(--ifm-color-primary-light);
   color: #fff;
 }
 
 [data-theme="dark"] .light:hover {
-  background-color: #6986d7;
+  background-color: var(--ifm-color-primary-darker);
   text-decoration: none;
   transition-duration: 0.1s;
 }

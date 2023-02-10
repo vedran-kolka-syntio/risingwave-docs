@@ -6,14 +6,14 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --test: #5577d6;
-  --ifm-color-primary: #95adee;
-  --ifm-color-primary-dark: #7493e9;
-  --ifm-color-primary-darker: #6386e6;
-  --ifm-color-primary-darkest: #3160de;
-  --ifm-color-primary-light: #b6c7f3;
-  --ifm-color-primary-lighter: #c7d4f6;
-  --ifm-color-primary-lightest: #f9fafe;
+  --test: #98e1ff;
+  --ifm-color-primary: #18c6ff;
+  --ifm-color-primary-dark: #0098ef;
+  --ifm-color-primary-darker: #0069a8;
+  --ifm-color-primary-darkest: #002c42;
+  --ifm-color-primary-light: #69d7fc;
+  --ifm-color-primary-lighter: #98e1ff;
+  --ifm-color-primary-lightest: #c4ecfc;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -24,6 +24,53 @@
 
   --doc-sidebar-width: 260px !important;
   --ifm-tabs-padding-vertical: 0.5rem !important;
+  --ifm-navbar-height: 3rem;
+  }
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #86f2dd;
+  --ifm-color-primary-dark: #4bb1ec;
+  --ifm-color-primary-darker: #0098ef;
+  --ifm-color-primary-darkest: #0175b8;
+  --ifm-color-primary-light: #b6c7f3;
+  --ifm-color-primary-lighter: #c7d4f6;
+  --ifm-color-primary-lightest: #f9fafe;
+  --ifm-background-color: #1f2765;
+
+  --ifm-color-success-dark: rgb(0, 139, 0);
+  --ifm-color-success-darker: rgb(0, 139, 0);
+  --ifm-color-success-darkest: rgb(0, 115, 0);
+  --ifm-color-success-light: rgb(38, 178, 38);
+  --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
+  --ifm-color-success-lightest: rgb(128, 210, 128);
+  
+}
+
+html[data-theme="dark"] {
+  --ifm-background-color: #001f2b;
+  --ifm-background-surface-color: #222f3d;
+  --ifm-hover-overlay: #ffffff0d;
+  --ifm-color-content: #e3e3e3;
+  --ifm-color-content-secondary: #fff;
+  --ifm-link-color: #86f2dd;
+  --ifm-tabs-color-active-border: #86f2dd;
+  --ifm-tabs-color-active: #86f2dd;
+  --ifm-code-background: #fafafa28;
+  --ifm-breadcrumb-color-active: #86f2dd;
+  --ifm-menu-color-active: #86f2dd;
+  --docusaurus-collapse-button-bg: #001F2B !important;
+  --ifm-toc-border-color: #001F2B;
+}
+
+.theme-doc-sidebar-container {
+  border-right: none !important;
+}
+
+.navbar--fixed-top {
+  justify-items: center;
+  align-items: center;
+  background-color: #001f2bef;
 }
 
 .markdown h1:first-child {
@@ -49,7 +96,7 @@ h1 {
 
 h2 {
   padding-bottom: 10px;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #86F2DD;
   font-family: Montserrat !important;
 }
 
@@ -75,6 +122,7 @@ h4 {
 
 .theme-doc-markdown ol li:not(.tabs__item) > p:first-child::before {
   font-size: 0.75rem;
+  font-weight: bold;
   counter-increment: circle-counter;
   content: counter(circle-counter);
   background-color: #e1e1e1;
@@ -83,7 +131,7 @@ h4 {
   line-height: 1.5rem;
   border-radius: 50%;
   display: inline-block;
-  color: #202020;
+  color: #002c42;
   text-align: center;
   position: relative;
   top: -2px;
@@ -94,25 +142,6 @@ h4 {
 .theme-doc-markdown ul li:not(.tabs__item)::marker {
   color: #909090;
   font-size: 1.1rem;
-}
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme="dark"] {
-  --ifm-color-primary: #95adee;
-  --ifm-color-primary-dark: #7493e9;
-  --ifm-color-primary-darker: #6386e6;
-  --ifm-color-primary-darkest: #3160de;
-  --ifm-color-primary-light: #b6c7f3;
-  --ifm-color-primary-lighter: #c7d4f6;
-  --ifm-color-primary-lightest: #f9fafe;
-  --ifm-background-color: #1f2765;
-
-  --ifm-color-success-dark: rgb(0, 139, 0);
-  --ifm-color-success-darker: rgb(0, 139, 0);
-  --ifm-color-success-darkest: rgb(0, 115, 0);
-  --ifm-color-success-light: rgb(38, 178, 38);
-  --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
-  --ifm-color-success-lightest: rgb(128, 210, 128);
 }
 
 .docusaurus-highlight-code-line {
@@ -148,7 +177,7 @@ thead tr {
 }
 
 thead {
-  top: 55px;
+  top: 2.9rem;
   z-index: 20;
   display: block;
   position: sticky;
@@ -238,11 +267,11 @@ table thead th {
   padding-bottom: 12px;
   border: none;
   background-color: white;
-  border-bottom: 1px solid var(--ifm-tabs-color-active);
+  border-bottom: 0.9px solid var(--ifm-color-primary-light);
 }
 
 [data-theme="dark"] table th {
-  background-color: #1b1b1d;
+  background-color: #001f2b;
 }
 
 table tbody tr td {
@@ -252,7 +281,7 @@ table tbody tr td {
 }
 
 [data-theme="dark"] td {
-  border-top: 1px solid #393939;
+  border-top: 1px solid #a4a2a229;
 }
 
 thead tr:first-child {

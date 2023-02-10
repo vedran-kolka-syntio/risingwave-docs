@@ -49,12 +49,14 @@ button.footerButton {
   font-size: 14px;
   text-transform: none;
   border: 1px solid #7798ef;
+  font-family: Mulish;
 }
 
 p.rightText {
   font-weight: 100;
   margin-right: 20px;
   color: #999;
+  font-family: Mulish;
 }
 
 @media screen and (max-width: 1440px) {

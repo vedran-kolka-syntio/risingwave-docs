@@ -95,7 +95,7 @@ const config = {
         title: "",
         logo: {
           alt: "RisingWave Logo",
-          src: "img/logo-title.svg",
+          src: "img/logo-title.png",
         },
         items: [
           // {
