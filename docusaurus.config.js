@@ -29,6 +29,7 @@ const config = {
             keywords: ["note", "tip", "info", "caution", "danger"],
           },
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           versions: {
@@ -88,7 +89,7 @@ const config = {
       docs: {
         sidebar: {
           hideable: true,
-          autoCollapseCategories: true,
+          autoCollapseCategories: false,
         },
       },
       navbar: {
