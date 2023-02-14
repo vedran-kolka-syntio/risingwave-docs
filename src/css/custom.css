@@ -143,7 +143,7 @@ h4 {
 .theme-doc-markdown ol:not(.tabs) {
   counter-reset: circle-counter;
   margin-left: 0;
-  padding-left: 0.4rem;
+  padding-left: 0.5rem;
 }
 
 .theme-doc-markdown ol > li:not(.tabs__item) {
