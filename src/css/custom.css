@@ -6,6 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-pre-background: red;
   --test: #98e1ff;
   --ifm-color-primary: #18c6ff;
   --ifm-color-primary-dark: #0098ef;
@@ -147,7 +148,11 @@ h4 {
 
 .theme-doc-markdown ol li:not(.tabs__item) {
   list-style: none;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.theme-doc-markdown ol li:not(.tabs__item) > p + div {
+  margin-left: 1rem;
 }
 
 .theme-doc-markdown ol li:not(.tabs__item) > p:first-child::before {
@@ -187,6 +192,9 @@ h4 {
 .menu__list-item--collapsed .menu__caret::before {
   background: url(../../static/img/plus.svg) 50% / 1rem 1rem;
   filter: var(--ifm-menu-link-sublist-icon-filter);
+}
+
+.menu__link--sublist-caret[aria-expanded="true"] {
 }
 
 .menu__link--sublist-caret::after {
