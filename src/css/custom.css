@@ -190,11 +190,8 @@ h4 {
 
 .menu__list-item--collapsed .menu__link--sublist::after,
 .menu__list-item--collapsed .menu__caret::before {
-  background: url(../../static/img/plus.svg) 50% / 1rem 1rem;
+  background: no-repeat url(../../static/img/plus.svg) 50% / 1rem 1rem;
   filter: var(--ifm-menu-link-sublist-icon-filter);
-}
-
-.menu__link--sublist-caret[aria-expanded="true"] {
 }
 
 .menu__link--sublist-caret::after {
@@ -205,7 +202,7 @@ h4 {
   height: 1.25rem;
   width: 1.25rem;
   transform: rotate(0turn);
-  background: url(../../static/img/minus.svg) 50% / 1rem 1rem;
+  background: no-repeat url(../../static/img/minus.svg) 50% / 1rem 1rem;
   transition: all var(--ifm-transition-fast) linear;
 }
 
