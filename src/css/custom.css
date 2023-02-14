@@ -58,6 +58,7 @@ html[data-theme="dark"] {
   --ifm-code-background: #fafafa28;
   --ifm-breadcrumb-color-active: #86f2dd;
   --ifm-menu-color-active: #86f2dd;
+  --ifm-menu-color: #9da1a6;
   --docusaurus-collapse-button-bg: #001f2b !important;
   --ifm-toc-border-color: #001f2b;
 }
@@ -69,7 +70,8 @@ html[data-theme="dark"] {
 
 .theme-doc-sidebar-item-category-level-1 > div > a,
 .theme-doc-sidebar-item-category-level-1 > div > a:hover {
-  color: var(--ifm-menu-color-active);
+  color: var(--ifm-color-emphasis-700);
+  font-family: "Montserrat-Medium";
   padding-top: 1.4rem;
 }
 
@@ -79,7 +81,7 @@ html[data-theme="dark"] {
 }
 
 .menu__link {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .menu__list,
