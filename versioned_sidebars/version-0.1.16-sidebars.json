@@ -44,7 +44,7 @@
           "type": "category",
           "label": "Set up a cluster with",
           "collapsible": true,
-          "collapsed": false,
+          "collapsed": true,
           "items": [
             {
               "type": "doc",

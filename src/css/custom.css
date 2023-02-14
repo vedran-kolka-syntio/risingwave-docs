@@ -75,7 +75,7 @@ html[data-theme="dark"] {
 
 .theme-doc-sidebar-item-category-level-1 > div:hover {
   background: none;
-  color: #0098ef;
+  color: var(--ifm-color-primary);
 }
 
 .menu__link {
@@ -184,18 +184,19 @@ h4 {
 .menu__list-item--collapsed .menu__link--sublist::after,
 .menu__list-item--collapsed .menu__caret::before {
   background: url(../../static/img/plus.svg) 50% / 1rem 1rem;
+  filter: var(--ifm-menu-link-sublist-icon-filter);
 }
 
-.menu__link--sublist-caret:after {
+.menu__link--sublist-caret::after {
   content: "";
   margin-left: auto;
   min-width: 1.25rem;
-  filter: var(--ifm-menu-link-sublist-icon-filter);
+  filter: none;
   height: 1.25rem;
   width: 1.25rem;
   transform: rotate(0turn);
   background: url(../../static/img/minus.svg) 50% / 1rem 1rem;
-  transition: background var(--ifm-transition-fast) linear;
+  transition: all var(--ifm-transition-fast) linear;
 }
 
 .docusaurus-highlight-code-line {
