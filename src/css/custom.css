@@ -152,7 +152,7 @@ h4 {
 }
 
 .theme-doc-markdown ol li:not(.tabs__item) > *:not(:first-child, code, strong) {
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 .theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
