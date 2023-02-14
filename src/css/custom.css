@@ -202,8 +202,9 @@ h4 {
   height: 1.25rem;
   width: 1.25rem;
   transform: rotate(0turn);
+  transform-origin: center;
   background: no-repeat url(../../static/img/minus.svg) 50% / 1rem 1rem;
-  transition: all var(--ifm-transition-fast) linear;
+  transition: none;
 }
 
 .docusaurus-highlight-code-line {
