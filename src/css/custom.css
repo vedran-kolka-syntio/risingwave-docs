@@ -190,7 +190,7 @@ h4 {
 
 .menu__list-item--collapsed .menu__link--sublist::after,
 .menu__list-item--collapsed .menu__caret::before {
-  background: no-repeat url(../../static/img/plus.svg) 50% / 1rem 1rem;
+  background: no-repeat center url(../../static/img/plus.svg);
   filter: var(--ifm-menu-link-sublist-icon-filter);
   content: "";
   margin-left: auto;
@@ -211,7 +211,7 @@ h4 {
   width: 1.25rem;
   transform: rotate(0turn);
   transform-origin: center;
-  background: no-repeat url(../../static/img/minus.svg) 50% / 1rem 1rem;
+  background: no-repeat center url(../../static/img/minus.svg);
   transition: background 200ms ease-out;
 }
 
