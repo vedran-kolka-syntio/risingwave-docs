@@ -143,19 +143,19 @@ h4 {
 .theme-doc-markdown ol:not(.tabs) {
   counter-reset: circle-counter;
   margin-left: 0;
-  padding-left: 1rem;
+  padding-left: 0.4rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) {
+.theme-doc-markdown ol > li:not(.tabs__item) {
   list-style: none;
   margin-bottom: 1rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) > p + div {
+.theme-doc-markdown ol li:not(.tabs__item) > *:not(:first-child, code, strong) {
   margin-left: 1rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) > p:first-child::before {
+.theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;
