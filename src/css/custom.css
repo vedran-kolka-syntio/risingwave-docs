@@ -26,7 +26,6 @@
   --doc-sidebar-width: 260px !important;
   --ifm-tabs-padding-vertical: 0.5rem !important;
   --ifm-navbar-height: 3rem;
-  --ifm-menu-link-padding-horizontal: 0.5rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -86,9 +85,20 @@ html[data-theme="dark"] {
   font-size: 1rem;
 }
 
-.theme-doc-sidebar-item-link-level-2 > .menu__link,
-.theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible > .menu__link {
+.menu__list .menu__list {
   padding-left: 0;
+}
+
+.theme-doc-sidebar-item-category-level-2 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem);
+}
+
+.theme-doc-sidebar-item-category-level-3 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 2);
+}
+
+.theme-doc-sidebar-item-category-level-4 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 3);
 }
 
 .navbar--fixed-top {
