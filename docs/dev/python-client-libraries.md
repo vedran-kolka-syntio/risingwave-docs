@@ -43,7 +43,7 @@ conn.autocommit = True # Set queries to be automatically committed.
 
 with conn.cursor() as cur:
     cur.execute("""
-CREATE TABLE walk(distance INT, duration INT)
+CREATE MATERIALIZED SOURCE walk(distance INT, duration INT)
 WITH (
     connector = 'datagen',
     fields.distance.kind = 'sequence',
@@ -78,9 +78,9 @@ conn.autocommit = True
 
 with conn.cursor() as cur:
     cur.execute("""CREATE MATERIALIZED VIEW counter
-    AS SELECT
+    AS
     SUM(distance) as total_distance,
-    SUM(duration) as total_duration
+    SUM(duration) as total_duration,
     FROM walk;""")
 
 conn.close()

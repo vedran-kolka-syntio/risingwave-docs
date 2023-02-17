@@ -11,8 +11,7 @@ Use the `DELETE` command to permanently remove rows from a table.
 
 ```sql
 DELETE FROM table_name
-WHERE condition 
-[ RETURNING col_name ];
+WHERE condition;
 ```
 
 
@@ -22,7 +21,6 @@ WHERE condition
 |---------------------------|-----------------------|
 |*table_name*               |The table where you want to remove records.|
 |**WHERE** *condition*      |Specify which rows you want to remove using an expression that returns a boolean value. Rows for which this expression returns true will be removed. <br/> If you omit the WHERE clause, all rows of records in the table will be deleted but the table structure will be kept.|
-|**RETURNING**               |Returns the values of any column based on each deleted row.|
 
 
 ## Example
@@ -41,12 +39,11 @@ SELECT * FROM taxi_trips;
 (3 rows)
 ```
 
-The following statement removes the record with id 3 from the table. Also, it returns the value of *id* for the deleted row.
+The following statement removes the record with id 3 from the table.
 
 ```sql
 DELETE FROM taxi_trips 
-WHERE id = 3 
-RETURNING id;
+WHERE id = 3;
 ```
 
 The following statement removes all rows from the table. 

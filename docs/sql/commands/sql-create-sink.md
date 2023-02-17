@@ -25,10 +25,8 @@ WITH (
 
 ## Parameters
 
-
 All Kafka WITH options are required if sinking to Kafka. `jdbc_url` and `table.name` options are required if sinking to a JDBC-available database.
-
-|Parameter or clause|Description|
+|Parameter or clause| Description|
 |---|---|
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
@@ -36,7 +34,7 @@ All Kafka WITH options are required if sinking to Kafka. `jdbc_url` and `table.n
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see the [Integrations Overview](../../rw-integration-summary.md) page for a full list of connectors and integrations we are working on. |
 |kafka.brokers|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
-|format| Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>.|
+|format	| Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>.|
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
 

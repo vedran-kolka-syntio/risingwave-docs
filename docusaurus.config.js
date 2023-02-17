@@ -38,15 +38,9 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.1.16": {
-              label: "0.1.16 (current)",
-              path: "/current",
-              badge: false,
-              banner: "none",
-            },
             "0.1.15": {
-              label: "0.1.15",
-              path: "/0.1.15",
+              label: "0.1.15 (current)",
+              path: "/current",
               badge: false,
               banner: "none",
             },
@@ -172,7 +166,7 @@ const config = {
       metadata: [
         {
           name: "keywords",
-          content: "streaming database, documentation, risingwave",
+          content: "docs, blog, risingwave, streaming, database",
         },
       ],
       items: [{ label: "Latest", to: "docs/latest/intro" }],

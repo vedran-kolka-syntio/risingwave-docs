@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_postion: 3
 id: architecture
 title: Architecture
 slug: /architecture
