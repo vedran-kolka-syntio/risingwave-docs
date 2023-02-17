@@ -4,28 +4,163 @@ slug: /sql-cheat-sheet
 title: SQL command cheat sheet
 description: Quick and easy SQL command reference.
 ---
+## Basics
 
+### Composite data types
 
+#### Struct
 
-### ALTER USER
+#### Array
 
-Modifies the name, password, privileges, and other properties of an existing user.
+## Get data in
 
-```sql title="Rename the user user1 to user001:"
-ALTER USER user1 RENAME TO user001;
+### CREATE SOURCE
+
+Sources are resources that RisingWave can read data from.
+
+Supported sources:
+
+- [Kafka/Redpanda](create-source/create-source-kafka-redpanda.md), [Pulsar/Astra Streaming](create-source/create-source-pulsar.md), [Kinesis](create-source/create-source-kinesis.md), [PostgreSQL CDC](create-source/create-source-cdc.md), [MySQL CDC](create-source/create-source-cdc.md)
+
+Supported formats:
+
+- Avro
+- JSON
+- Protobuf
+- Debezium JSON
+- Maxwell
+
+#### Kafka
+
+```sql title="Create a Kafka source with JSON data format:"
+CREATE SOURCE source_abc (
+   column1 varchar,
+   column2 integer,
+) // You can specify schema for sources in JSON.
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
+)
+ROW FORMAT JSON;
 ```
 
-```sql title="Modify the password and privileges of user001:"
-ALTER USER user001 NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
+If you want to persist the data from the source, replace `SOURCE` with `TABLE` and keep everything else unchanged.
+
+```sql title="Create a Kafka source with Avro data format:"
+CREATE SOURCE source_abc 
+WITH (...) //WITH fields are the same for Kafka sources.
+ROW FORMAT AVRO MESSAGE 'main_message'
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
+//Alternative: ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 
-### CREATE DATABASE
+```sql title="Create a Kafka source with Protobuf data format:"
+CREATE SOURCE source_abc
+WITH  (...) //WITH fields are the same for Kafka sources.
+ROW FORMAT PROTOBUF MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+```
 
-Creates a new database.
+#### Pulsar
+
+```sql title="Create a Pulsar source with JSON data format:"
+CREATE SOURCE source_abc (
+   column1 string,
+   column2 integer,
+)
+WITH (
+   connector='pulsar',
+   topic='demo_topic',
+   service.url='pulsar://localhost:6650/',
+   admin.url='http://localhost:8080',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000'
+)
+ROW FORMAT JSON;
+```
+
+```sql title="Create a Pulsar source with Avro data format:"
+CREATE SOURCE source_abc 
+WITH (...) // WITH fields are the same for Pulsar sources
+ROW FORMAT PROTOBUF 
+MESSAGE 'FooMessage'
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+```
+
+```sql title="Create a Pulsar source with Protobuf data format:"
+CREATE SOURCE source_abc 
+WITH (...) // WITH fields are the same for Pulsar sources
+ROW FORMAT PROTOBUF 
+MESSAGE 'FooMessage'
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+```
+
+#### Kinesis
+Creating a Kinesis source is similar to a Pulsar source. The only difference lies in the `WITH` fields:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS travel;
+...
+WITH (
+   connector='kinesis',
+   stream='kafka',
+   aws.region='user_test_topic',
+   endpoint='172.10.1.1:9090,172.10.1.2:9090',
+   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+   aws.credentials.role.external_id='demo_external_id'
+) 
+...
 ```
+
+### CREATE TABLE
+
+Creates a new table.
+
+```sql title="Create a table with three columns:"
+CREATE TABLE taxi_trips(
+    id VARCHAR,
+    distance DOUBLE PRECISION,
+    city VARCHAR
+);
+```
+
+```sql title="Create a table that includes nested tables:"
+CREATE TABLE taxi_trips(
+    id VARCHAR,
+    distance DOUBLE PRECISION,
+    duration DOUBLE PRECISION,
+    fare STRUCT<initial_charge DOUBLE PRECISION, subsequent_charge DOUBLE PRECISION, surcharge DOUBLE PRECISION, tolls DOUBLE PRECISION>
+);
+```
+
+### CREATE TABLE WITH
+
+### INSERT
+
+
+
+## Move data out
+
+### CREATE SINK
+
+Creates a sink. A sink is a target that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
+
+```sql
+CREATE SINK [ IF NOT EXISTS ] sink_name 
+FROM sink_from
+WITH (
+   connector='kafka',
+   kafka.brokers='broker_address',
+   kafka.topic='topic_address',
+   format='format'
+);
+```
+
+## Work with your data
 
 ### CREATE MATERIALIZED VIEW
 
@@ -44,227 +179,99 @@ WHERE
     AND metric_value > 0.15;
 ```
 
-### CREATE SCHEMA
+### UPDATE
 
-Creates a new schema.
+Modifies values of existing rows in a table.
 
-```sql
-CREATE SCHEMA IF NOT EXISTS schema_1;
+```sql title="Update the city name from 'Yerba Buena' to 'San Francisco':"
+UPDATE taxi_trips 
+SET city = 'San Francisco' 
+WHERE city = 'Yerba Buena';
 ```
 
-### CREATE SINK
-
-Creates a sink. A sink is a target that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
-
-```sql
-CREATE SINK [ IF NOT EXISTS ] sink_name 
-FROM sink_from
-WITH (
-   connector='kafka',
-   kafka.brokers='broker_address',
-   kafka.topic='topic_address',
-   format='format'
-);
+```sql title="Converts the distance unit from kilometer to mile':"
+UPDATE taxi_trips 
+SET distance = distance * 0.6214;
 ```
 
-### CREATE SOURCE
+## Operate RisingWave
 
-Establishes the connection to a source. After a connection is established, RisingWave will be able to read data from the source. Sources are resources that RisingWave can read data from.
+### CREATE USER
 
-Supported sources include: [Kafka](create-source/create-source-kafka-redpanda.md). [Redpanda](create-source/create-source-kafka-redpanda.md), [Pulsar](create-source/create-source-pulsar.md), [Kinesis](create-source/create-source-kinesis.md), [PostgreSQL CDC](create-source/create-source-cdc.md), and [MySQL CDC](create-source/create-source-cdc.md).
-
-Supported formats includes Avro, JSON, Protobuf, and Debezium JSON.
-
-Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-<TabItem value="avro" label="Avro" default>
-
-```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
-WITH (
-   connector='kafka',
-   topic='demo_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
-)
-ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
-```
-</TabItem>
-<TabItem value="json" label="JSON" default>
-
-```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
-   column1 varchar,
-   column2 integer,
-)
-WITH (
-   connector='kafka',
-   topic='demo_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
-)
-ROW FORMAT JSON;
-```
-</TabItem>
-<TabItem value="pb" label="Protobuf" default>
-
-```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
-WITH (
-   connector='kafka',
-   topic='demo_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
-)
-ROW FORMAT PROTOBUF MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+```sql title="Create a user account with the name "user1" and password 'pAssword12345':"
+CREATE USER user1 
+    WITH PASSWORD 'pAssword12345';
 ```
 
-</TabItem>
-</Tabs>
+### ALTER USER
+
+Modifies the name, password, privileges, and other properties of an existing user.
+
+```sql title="Rename the user user1 to user001:"
+ALTER USER user1 RENAME TO user001;
+```
+
+```sql title="Modify the password and privileges of user001:"
+ALTER USER user001 NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
+```
 
 
 
+## Performance tuning
 
+### DESCRIBE
 
-
-
-Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.
-
-<Tabs>
-<TabItem value="avro" label="Avro" default>
+Displays columns in the specified table, source, or materialized view.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
-WITH (
-   connector='pulsar',
-   topic='demo_topic',
-   service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT AVRO MESSAGE 'FooMessage'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+DESCRIBE taxi_trips;
 ```
-</TabItem>
-<TabItem value="json" label="JSON" default>
 
-```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
-   column1 string,
-   column2 integer,
-)
-WITH (
-   connector='pulsar',
-   topic='demo_topic',
-   service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT JSON;
+
+### EXPLAIN
+
+Shows the execution plan of a statement.
+
+```sql title="Shows the execution plan of a SELECT statement:"
+EXPLAIN SELECT
+    o_orderpriority,
+    count(*) AS order_count
+FROM
+    orders
+WHERE
+    o_orderdate >= date '1997-07-01'
+    and o_orderdate < date '1997-07-01' + interval '3' month
+    and exists (
+        SELECT
+            *
+        FROM
+            lineitem
+        WHERE
+            l_orderkey = o_orderkey
+            and l_commitdate < l_receiptdate
+    )
+GROUP BY
+    o_orderpriority
+ORDER BY
+    o_orderpriority;
 ```
-</TabItem>
-<TabItem value="pb" label="Protobuf" default>
 
-```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
-   column1 string,
-   column2 integer,
-)
-WITH (
-   connector='pulsar',
-   topic='demo_topic',
-   service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
-   scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT PROTOBUF MESSAGE 'FooMessage'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+```sql title="Execution plan output:"
+ BatchExchange { order: [orders.o_orderpriority ASC], dist: Single }
+   BatchSort { order: [orders.o_orderpriority ASC] }
+     BatchHashAgg { group_key: [orders.o_orderpriority], aggs: [count] }
+       BatchExchange { order: [], dist: HashShard(orders.o_orderpriority) }
+         BatchHashJoin { type: LeftSemi, predicate: orders.o_orderkey = lineitem.l_orderkey }
+           BatchExchange { order: [], dist: HashShard(orders.o_orderkey) }
+             BatchProject { exprs: [orders.o_orderkey, orders.o_orderpriority] }
+               BatchFilter { predicate: (orders.o_orderdate >= '1997-07-01':Varchar::Date) AND (orders.o_orderdate < ('1997-07-01':Varchar::Date + '3 mons 00:00:00':Interval)) }
+                 BatchScan { table: orders, columns: [o_orderkey, o_orderpriority, o_orderdate] }
+           BatchExchange { order: [], dist: HashShard(lineitem.l_orderkey) }
+             BatchProject { exprs: [lineitem.l_orderkey] }
+               BatchFilter { predicate: (lineitem.l_commitdate < lineitem.l_receiptdate) }
+                 BatchScan { table: lineitem, columns: [l_orderkey, l_commitdate, l_receiptdate] }
+(13 rows)
 ```
-</TabItem>
-</Tabs>
-
-
-
-Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
-
-<Tabs>
-<TabItem value="avro" label="Avro" default>
-
-```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
-WITH (
-   connector='kinesis',
-   stream='kafka',
-   aws.region='user_test_topic',
-   endpoint='172.10.1.1:9090,172.10.1.2:9090',
-   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
-   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
-) 
-ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
-```
-</TabItem>
-<TabItem value="json" label="JSON" default>
-
-```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name (
-   column1 varchar,
-   column2 integer,
-) 
-WITH (
-   connector='kinesis',
-   stream='kafka',
-   aws.region='user_test_topic',
-   endpoint='172.10.1.1:9090,172.10.1.2:9090',
-   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
-   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
-) 
-ROW FORMAT JSON;
-```
-</TabItem>
-<TabItem value="pb" label="Protobuf" default>
-
-```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
-WITH (
-   connector='kinesis',
-   stream='kafka',
-   aws.region='user_test_topic',
-   endpoint='172.10.1.1:9090,172.10.1.2:9090',
-   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
-   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
-) 
-ROW FORMAT PROTOBUF MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
-```
-</TabItem>
-</Tabs>
-
-
-
-
-
-
-
-
 
 Here is an example of connecting RisingWave to a CDC service to read data from individual streams.
 
@@ -310,33 +317,9 @@ ROW SCHEMA LOCATION 'local_or_remote_location'
 ROW FORMAT DEBEZIUM_JSON
 ```
 
-### CREATE TABLE
 
-Creates a new table.
 
-```sql title="Create a table with three columns:"
-CREATE TABLE taxi_trips(
-    id VARCHAR,
-    distance DOUBLE PRECISION,
-    city VARCHAR
-);
-```
 
-```sql title="Create a table that includes nested tables:"
-CREATE TABLE taxi_trips(
-    id VARCHAR,
-    distance DOUBLE PRECISION,
-    duration DOUBLE PRECISION,
-    fare STRUCT<initial_charge DOUBLE PRECISION, subsequent_charge DOUBLE PRECISION, surcharge DOUBLE PRECISION, tolls DOUBLE PRECISION>
-);
-```
-
-### CREATE USER
-
-```sql title="Create a user account with the name "user1" and password 'pAssword12345':"
-CREATE USER user1 
-    WITH PASSWORD 'pAssword12345';
-```
 
 ### CREATE VIEW
 
@@ -380,13 +363,7 @@ DELETE FROM taxi_trips
 WHERE id = 3;
 ```
 
-### DESCRIBE
 
-Displays columns in the specified table, source, or materialized view.
-
-```sql
-DESCRIBE taxi_trips;
-```
 
 ### DROP DATABASE
 
@@ -463,50 +440,7 @@ DROP USER user1;
 ```
 
 
-### EXPLAIN
 
-Shows the execution plan of a statement.
-
-```sql title="Shows the execution plan of a SELECT statement:"
-EXPLAIN SELECT
-    o_orderpriority,
-    count(*) AS order_count
-FROM
-    orders
-WHERE
-    o_orderdate >= date '1997-07-01'
-    and o_orderdate < date '1997-07-01' + interval '3' month
-    and exists (
-        SELECT
-            *
-        FROM
-            lineitem
-        WHERE
-            l_orderkey = o_orderkey
-            and l_commitdate < l_receiptdate
-    )
-GROUP BY
-    o_orderpriority
-ORDER BY
-    o_orderpriority;
-```
-
-```sql title="Execution plan output:"
- BatchExchange { order: [orders.o_orderpriority ASC], dist: Single }
-   BatchSort { order: [orders.o_orderpriority ASC] }
-     BatchHashAgg { group_key: [orders.o_orderpriority], aggs: [count] }
-       BatchExchange { order: [], dist: HashShard(orders.o_orderpriority) }
-         BatchHashJoin { type: LeftSemi, predicate: orders.o_orderkey = lineitem.l_orderkey }
-           BatchExchange { order: [], dist: HashShard(orders.o_orderkey) }
-             BatchProject { exprs: [orders.o_orderkey, orders.o_orderpriority] }
-               BatchFilter { predicate: (orders.o_orderdate >= '1997-07-01':Varchar::Date) AND (orders.o_orderdate < ('1997-07-01':Varchar::Date + '3 mons 00:00:00':Interval)) }
-                 BatchScan { table: orders, columns: [o_orderkey, o_orderpriority, o_orderdate] }
-           BatchExchange { order: [], dist: HashShard(lineitem.l_orderkey) }
-             BatchProject { exprs: [lineitem.l_orderkey] }
-               BatchFilter { predicate: (lineitem.l_commitdate < lineitem.l_receiptdate) }
-                 BatchScan { table: lineitem, columns: [l_orderkey, l_commitdate, l_receiptdate] }
-(13 rows)
-```
 
 
 
@@ -610,17 +544,3 @@ SHOW TABLES FROM schema_1;
 
 
 
-### UPDATE
-
-Modifies values of existing rows in a table.
-
-```sql title="Update the city name from 'Yerba Buena' to 'San Francisco':"
-UPDATE taxi_trips 
-SET city = 'San Francisco' 
-WHERE city = 'Yerba Buena';
-```
-
-```sql title="Converts the distance unit from kilometer to mile':"
-UPDATE taxi_trips 
-SET distance = distance * 0.6214;
-```
