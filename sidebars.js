@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'About RisingWave',
       collapsible: true,
       collapsed: false,
       items: [
@@ -41,7 +41,13 @@ const sidebars = {
           type: 'doc',
           id: 'key-concepts',
           label: 'Key concepts and terms',
-        }
+        },
+
+        {
+          type: 'doc',
+          label: 'Integrations',
+          id: 'rw-integration-summary',
+          },
       ]
     },
 
@@ -95,10 +101,9 @@ const sidebars = {
         },
       ]
     },
-
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Use cases',
       collapsible: true,
       collapsed: true,
       items: [
@@ -147,11 +152,7 @@ const sidebars = {
           label: 'Overview',
           id: 'data-ingestion',
         },
-        {
-          type: 'doc',
-          label: 'CDC',
-          id: 'create-source/create-source-cdc',
-        },
+     
         {
           type: 'doc',
           label: 'Kafka',
@@ -179,6 +180,21 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'MySQL CDC',
+         id: 'guides/ingest-from-mysql-cdc'
+        },
+         {
+          type: 'doc',
+          label: 'PostgreSQL CDC',
+         id: 'guides/ingest-from-postgres-cdc'
+        },
+          {
+          type: 'doc',
+          label: 'CDC via Kafka',
+          id: 'create-source/create-source-cdc',
+        },
+        {
+          type: 'doc',
           label: 'Amazon S3',
           id: 'create-source/create-source-s3',
         },
@@ -189,9 +205,10 @@ const sidebars = {
         },
       ]
     },
-    {type: 'category',
-    label: 'Data delivery',
-    items:[
+    {
+      type: 'category',
+      label: 'Data delivery',
+      items:[
       {
         type: 'doc',
         id: 'delivery-overview',
@@ -208,17 +225,14 @@ const sidebars = {
         label: 'Sink to AWS MySQL RDS',
       },
     ]},
+    ]
+  },
 
     {
       type: 'category',
-      label: 'Integrations',
+      label: 'Data visualization',
       items:
       [
-        {
-        type: 'doc',
-        label: 'Overview',
-        id: 'rw-integration-summary',
-        },
         {
         type: 'doc',
         label: 'Grafana',
@@ -234,7 +248,7 @@ const sidebars = {
 
   {
     type: 'category',
-    label: 'SQL reference',
+    label: 'SQL',
     collapsible: true,
     collapsed: true,
     items: 
@@ -251,24 +265,45 @@ const sidebars = {
               
           ]
         },
-        {
-          type: 'category',
-          label: 'Patterns',
-          items:
-            [
-              {
-                type: 'doc',
-                id: 'sql/syntax/sql-pattern-topn',
-                label: 'Top-N by group'
-              }
-            ]
-         }, 
-        {
-          type: 'doc',
-          id: 'sql/sql-identifiers',
-          label: 'Identifiers',
-        }, 
-        {
+      {
+        type: 'category',
+        label: 'Query syntax',
+        items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-from-clause',
+            label: 'FROM',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-group-by-clause',
+            label: 'GROUP BY',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-having-clause',
+            label: 'HAVING',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-limit-clause',
+            label: 'LIMIT',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-where-clause',
+            label: 'WHERE',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-with-clause',
+            label: 'WITH',
+          },
+        ]
+        },
+
+       {
           type: 'category',
           label: 'Data types',
           items:
@@ -364,9 +399,26 @@ const sidebars = {
             type: 'doc',
             id: 'sql/functions-operators/sql-function-set',
             label: 'Set',
-          },
-        
+          }
         ]
+      },
+      
+        {
+          type: 'category',
+          label: 'Patterns',
+          items:
+            [
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-topn',
+                label: 'Top-N by group'
+              }
+            ]
+         }, 
+        {
+          type: 'doc',
+          id: 'sql/sql-identifiers',
+          label: 'Identifiers',
         },
       
         {
@@ -386,9 +438,11 @@ const sidebars = {
           
           ]
         },
-        
-     'sql/psql-commands',
-      ],
+       {
+        type: 'doc',
+        id: 'sql/psql-commands'
+       } 
+      ]
     },
 
     {
