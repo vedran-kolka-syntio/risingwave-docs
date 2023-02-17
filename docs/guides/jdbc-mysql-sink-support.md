@@ -206,3 +206,6 @@ SELECT * FROM personnel;
 |    2 | Bob   |
 +------+-------+
 ```
+
+</TabItem>
+</Tabs>
