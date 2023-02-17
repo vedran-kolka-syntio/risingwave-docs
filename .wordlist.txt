@@ -77,4 +77,3 @@ pgwire
 json
 mv
 mysql
-JDBC
