@@ -59,7 +59,7 @@ export default function DocItemLayout({ children }) {
               categoryId="DIC_kwDOG-KUnc4COB_V"
               mapping="title"
               term="Welcome to @giscus/react component!"
-              reactionsEnabled="1"
+              reactionsEnabled="0"
               emitMetadata="0"
               inputPosition="top"
               theme={colorMode === "dark" ? "transparent_dark" : colorMode}
