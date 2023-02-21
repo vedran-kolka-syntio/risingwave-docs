@@ -105,6 +105,15 @@ html[data-theme="dark"] {
   justify-items: center;
   align-items: center;
   background-color: #001f2bef;
+  color: #e3e3e3;
+}
+
+.navbar__link {
+  color: #e3e3e3;
+}
+
+.clean-btn {
+  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
 }
 
 .markdown h1:first-child {
