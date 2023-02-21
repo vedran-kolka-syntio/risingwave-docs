@@ -190,6 +190,10 @@ const config = {
       src: "https://asvd.github.io/syncscroll/syncscroll.js",
       async: true,
     },
+    {
+      src: "https://app.happyreact.com/widget/reactions.js",
+      defer: true,
+    },
   ],
 };
 
