@@ -459,3 +459,7 @@ table tr:first-child {
     opacity: 0;
   }
 }
+
+/* .hr-powered-by {
+  display: none !important;
+} */

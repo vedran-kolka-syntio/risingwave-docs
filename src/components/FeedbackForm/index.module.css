@@ -125,29 +125,30 @@ p.rightText {
   text-align: center;
 }
 
-.widget .grid {
+.happyReact .grid {
+  min-height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  min-height: 50px;
 }
 
-.widget .cell {
+.happyReact .cell {
   width: 4rem;
 }
 
-.widget .reaction {
+.happyReact .reaction {
   width: 100%;
-  color: #7798ef;
-  border: #7798ef 1px solid;
+  color: #0098ef;
+  border: #0098ef 1px solid;
   border-radius: 4px;
   margin-bottom: 1rem;
 }
 
-.widget .reaction:hover {
-  color: #7798ef88;
-  border: #7798ef 1px solid;
+.happyReact .reaction:hover {
+  color: #0098ef88;
+  border-radius: 4px;
+  border: #0098ef 1px solid;
   background-color: #1976d20a;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -155,7 +156,7 @@ p.rightText {
     color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.widget .footer {
+.happyReact .powered-by {
   display: none;
   color: #e3e3e3;
   margin-top: 10px;

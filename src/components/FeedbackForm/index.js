@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "@emotion/styled";
 import PullRequestIcon from "@site/static/img/github_pr.svg";
 import IssueIcon from "@site/static/img/github_issue.svg";
 import { Button, Typography, Stack } from "@mui/material";
@@ -9,7 +8,8 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./index.module.css";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import { Widget } from "@happyreact/react";
+import "@happyreact/react/theme.css";
 
 export default function FeedbackForm(props) {
   const [formData, setFormData] = useState({
@@ -93,13 +93,6 @@ export default function FeedbackForm(props) {
     });
   };
 
-  useEffect(() => {
-    if (!ExecutionEnvironment.canUseDOM) {
-      return;
-    }
-    window.HappyReact.init();
-  }, []);
-
   return (
     <Stack width="100%">
       <div className={styles.breakLine}></div>
@@ -110,17 +103,17 @@ export default function FeedbackForm(props) {
       <form>
         <div className={styles.happyReact}>
           <h3 className={styles.title}>Was this page helpful?</h3>
-          <div
+          <Widget
             className={styles.widget}
-            data-hr-token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
-            data-hr-resource={props.resource}
-            data-hr-styles={JSON.stringify({
+            token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
+            resource={props.resource}
+            classes={{
+              root: styles.root,
               container: styles.container,
               grid: styles.grid,
               cell: styles.cell,
               reaction: styles.reaction,
-              footer: styles.footer,
-            })}
+            }}
           />
         </div>
         <Stack direction="row" spacing={2}>
