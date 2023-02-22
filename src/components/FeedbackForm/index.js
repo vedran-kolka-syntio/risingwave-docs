@@ -106,7 +106,7 @@ export default function FeedbackForm(props) {
           <Widget
             className={styles.widget}
             token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
-            resource={props.resource}
+            resource={props.unversionedId}
             classes={{
               root: styles.root,
               container: styles.container,
