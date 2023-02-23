@@ -97,13 +97,13 @@ const config = {
           src: "img/logo-title.svg",
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Docs',
-          // },
-          // {to: '/blog', label: 'Blog', position: 'left'},
+          {
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'RisingWave',
+          },
+          {to: '/cloud', label: 'RisingWave Cloud', position: 'left'},
           {
             type: "docsVersionDropdown",
             docsPluginId: "default",
