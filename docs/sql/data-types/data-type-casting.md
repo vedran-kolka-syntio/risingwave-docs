@@ -25,6 +25,14 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 | **time** | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | 🟠 | ✖️ | ✖️ | ✖️ |  | 🟢 |
 | **interval** | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | ✖️ | 🟠 | ✖️ | ✖️ | ✖️ | 🟠 |  |
 
+
+:::note
+
+When casting varchar to date, timestamp, or timestamp with timezone, if the date in the string cannot be correctly parsed, RisingWave will treats the whole casting expression as a literal. For example, `'2022-01-01'::date` will be treated as a literal, rather than a casting expression.
+
+:::
+
+
 :::note
 
 Structs can be casted to structs explictly or implicitly if the nested expressions and types can be casted.
