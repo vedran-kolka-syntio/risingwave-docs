@@ -1,9 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "RisingWave",
@@ -28,7 +25,7 @@ const config = {
             tag: ":::",
             keywords: ["note", "tip", "info", "caution", "danger"],
           },
-          sidebarPath: require.resolve("./sidebars.js"),
+          // sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           versions: {
@@ -69,14 +66,20 @@ const config = {
             require.resolve("./src/css/buttons.css"),
           ],
         },
-        // googleAnalytics: {
-        //   trackingID: 'myID',
-        //   anonymizeIP: true
-        // }
       }),
     ],
   ],
-
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "cloud",
+        path: "cloud",
+        routeBasePath: "cloud",
+        sidebarPath: require.resolve("./sidebarCloud.js"),
+      },
+    ],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -98,12 +101,12 @@ const config = {
         },
         items: [
           {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'RisingWave',
+            type: "doc",
+            docId: "intro",
+            position: "left",
+            label: "RisingWave",
           },
-          {to: '/cloud', label: 'RisingWave Cloud', position: 'left'},
+          { to: "/cloud/about-faq", label: "RisingWave Cloud", position: "left" },
           {
             type: "docsVersionDropdown",
             docsPluginId: "default",

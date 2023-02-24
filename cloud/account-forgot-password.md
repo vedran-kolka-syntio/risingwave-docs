@@ -1,6 +1,6 @@
 ---
 id: account-forgot-password
 title: Forgot password?
-description: 
+description: hello
 slug: /account-forgot-password
 ---

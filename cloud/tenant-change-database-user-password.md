@@ -1,6 +1,6 @@
 ---
 id: tenant-change-database-user-password
 title: Change database user password
-description: 
+description: hello
 slug: /tenant-change-database-user-password
 ---

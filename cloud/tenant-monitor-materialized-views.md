@@ -1,6 +1,6 @@
 ---
 id: tenant-monitor-materialized-views
 title: Monitor materialized views
-description: 
+description: hello
 slug: /tenant-monitor-materialized-views
 ---

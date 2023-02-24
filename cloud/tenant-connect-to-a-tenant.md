@@ -1,6 +1,6 @@
 ---
 id: tenant-connect-to-a-tenant
 title: Connect to a tenant
-description: 
+description: hello
 slug: /tenant-connect-to-a-tenant
 ---
