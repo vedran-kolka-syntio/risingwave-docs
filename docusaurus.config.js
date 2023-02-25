@@ -72,6 +72,7 @@ const config = {
   plugins: [
     [
       "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
       {
         id: "cloud",
         path: "cloud",
@@ -106,7 +107,12 @@ const config = {
             position: "left",
             label: "RisingWave",
           },
-          { to: "/cloud/about-faq", label: "RisingWave Cloud", position: "left" },
+          {
+            to: "/cloud/about-whats-risingwave-cloud",
+            label: "RisingWave Cloud",
+            position: "left",
+            activeBaseRegex: `/cloud/`,
+          },
           {
             type: "docsVersionDropdown",
             docsPluginId: "default",
