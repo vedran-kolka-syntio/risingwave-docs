@@ -468,3 +468,7 @@ table tr:first-child {
     transform: translateX(4px);
   }
 }
+
+.plugin-id-cloud .dropdown {
+  display: none;
+}
