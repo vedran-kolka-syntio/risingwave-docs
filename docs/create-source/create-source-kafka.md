@@ -18,7 +18,7 @@ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='kafka',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [ MESSAGE 'message' ]
@@ -47,7 +47,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 :::
 
-### Parameters
+### Connector parameters
 
 |Field|Notes|
 |---|---|
@@ -56,11 +56,15 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+
+### Other parameters
+
+|Field|Notes|
+|---|---|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
-
 
 ## Example
 
@@ -188,10 +192,10 @@ Simple Authentication and Security Layer (SASL) is a framework for authenticatio
 
 RisingWave supports four SASL authentication mechanisms:
 
-- SASL/PLAIN
-- SASL/SCRAM
-- SASL/GSSAPI
-- SASL/OAUTHBEARER
+- `SASL/PLAIN`
+- `SASL/SCRAM`
+- `SASL/GSSAPI`
+- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -205,11 +209,11 @@ To read data encrypted with SSL without SASL authentication, specify these param
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol|Set to `SSL`.|
-|properties.ssl.ca.location| |
-|properties.ssl.certificate.location| |
-|properties.ssl.key.location| |
-|properties.ssl.key.password| |
+|`properties.security.protocol`|Set to `SSL`.|
+|`properties.ssl.ca.location`| |
+|`properties.ssl.certificate.location`| |
+|`properties.ssl.key.location`| |
+|`properties.ssl.key.password`| |
 
 :::note
 
@@ -238,14 +242,14 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/PLAIN
+### `SASL/PLAIN`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `PLAIN`.|
-|properties.sasl.username| |
-|properties.sasl.password| |
+|`properties.security.protocol`| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `PLAIN`.|
+|`properties.sasl.username`| |
+|`properties.sasl.password`| |
 
 :::note
 
@@ -255,10 +259,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/PLAIN with SSL, you need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
 Here is an example of creating a source authenticated with SASL/PLAIN without SSL encryption.
 
@@ -303,14 +307,14 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/SCRAM
+### `SASL/SCRAM`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
-|properties.sasl.username| |
-|properties.sasl.password| |
+|`properties.security.protocol`| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
+|`properties.sasl.username`| |
+|`properties.sasl.password`| |
 
 :::note
 
@@ -345,17 +349,17 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/GSSAPI
+### `SASL/GSSAPI`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
-|properties.sasl.mechanism| Set to `GSSAPI`.|
-|properties.sasl.kerberos.service.name| |
-|properties.sasl.kerberos.keytab| |
-|properties.sasl.kerberos.principal| |
-|properties.sasl.kerberos.kinit.cmd=| |
-|properties.sasl.kerberos.min.time.before.relogin| |
+|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
+|`properties.sasl.mechanism`| Set to `GSSAPI`.|
+|`properties.sasl.kerberos.service.name`| |
+|`properties.sasl.kerberos.keytab`| |
+|`properties.sasl.kerberos.principal`| |
+|`properties.sasl.kerberos.kinit.cmd`| |
+|`properties.sasl.kerberos.min.time.before.relogin`| |
 
 :::note
 
@@ -386,7 +390,7 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/OAUTHBEARER
+### `SASL/OAUTHBEARER`
 
 :::caution
 
@@ -396,9 +400,9 @@ ROW FORMAT JSON;
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `OAUTHBEARER`.|
-|properties.sasl.oauthbearer.config| |
+|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
+|`properties.sasl.oauthbearer.config`| |
 
 :::note
 
@@ -408,10 +412,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
 This is an example of creating a materialized source authenticated with SASL/OAUTHBEARER without SSL encryption.
 

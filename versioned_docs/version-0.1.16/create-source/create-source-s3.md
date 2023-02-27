@@ -1,7 +1,7 @@
 ---
 id: create-source-s3
-title: Ingest data from S3 buckets.
-description: Ingest data from S3 buckets.
+title: Ingest data from S3 buckets
+description: Ingest data from S3 buckets
 slug: /create-source-s3
 ---
 Use the SQL statement below to connect RisingWave to an Amazon S3 source.
@@ -13,7 +13,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 schema_definition
 WITH (
    connector='s3',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
 ```

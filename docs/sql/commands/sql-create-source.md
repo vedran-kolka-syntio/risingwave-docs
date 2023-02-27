@@ -17,11 +17,11 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='connector_name',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
-[ROW SCHEMA LOCATION 'location'];
+[ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]];
 ```
 
 :::note

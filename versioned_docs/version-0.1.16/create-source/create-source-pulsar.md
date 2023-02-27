@@ -18,7 +18,7 @@ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='pulsar',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
@@ -46,15 +46,6 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 
 :::
-
-
-|Field|Notes|
-|---|---|
-|topic|Required. Address of the Pulsar topic. One source can only correspond to one topic.	|
-|service.url| Required. Address of the Pulsar service	|
-|admin.url	| Required. Address of the Pulsar admin	|
-|scan.startup.mode| The Pulsar consumer starts consuming data from the commit offset. Supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|The offset in milliseconds from a certain point of time.|
 
 |Field|Notes|
 |---|---|

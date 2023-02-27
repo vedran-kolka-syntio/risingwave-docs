@@ -1,7 +1,7 @@
 ---
 id: create-source-s3
-title: Ingest data from S3 buckets.
-description: Ingest data from S3 buckets.
+title: Ingest data from S3 buckets
+description: Ingest data from S3 buckets
 slug: /create-source-s3
 ---
 Use the SQL statement below to connect RisingWave to an Amazon S3 source.
@@ -13,7 +13,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 schema_definition
 WITH (
    connector='s3',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
 ```
@@ -34,6 +34,7 @@ ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ',';
 |s3.bucket_name	|Required. The name of the bucket the data source is stored in.	|
 |s3.credentials.access| Conditional. This field indicates the access key ID of AWS. It must be used with `s3.credentials.secret`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 |s3.credentials.secret| Conditional. This field indicates the secret access key of AWS. It must be used wtih `s3.credentials.access`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
+|match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style glob syntax is supported. |
 
 
 ## Example
@@ -51,5 +52,5 @@ CREATE TABLE s(
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx'
-) ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ',';
+) ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
 ```
