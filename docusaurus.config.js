@@ -163,7 +163,7 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community.`,
+        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
       },
       prism: {
         additionalLanguages: ["sql", "java"],
