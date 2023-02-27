@@ -25,8 +25,12 @@ module.exports = {
       label: "Quickstart",
       collapsible: true,
       collapsed: true,
-      link:{type: 'doc', id:'quickstart'},
       items: [
+        {
+          type: "doc",
+          id: "quickstart",
+          label: "Get started in 5 steps",
+        },
         {
           type: "link",
           label: "1. Sign up and log in",
@@ -65,7 +69,6 @@ module.exports = {
           type: "category",
           label: "Manage tenants",
           collapsible: true,
-
           items: [
             {
               type: "doc",
