@@ -167,10 +167,24 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Account",
+      label: "Develop",
       collapsible: false,
       collapsed: false,
       link: { type: "doc", id: "develop-overview" },
+      items: [
+        {
+          type: "doc",
+          id: "develop-overview",
+          label: "Overview",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Account",
+      collapsible: false,
+      collapsed: false,
+      link: { type: "doc", id: "account-overview" },
       items: [
         {
           type: "doc",

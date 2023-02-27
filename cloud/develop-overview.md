@@ -5,6 +5,3 @@ description: hello
 slug: /develop-overview
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />

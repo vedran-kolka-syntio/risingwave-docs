@@ -1,6 +1,6 @@
 ---
 id: tenant-overview
-title: Tenant
+title: Tenant and database
 description: hello
 slug: /tenant-overview
 ---
