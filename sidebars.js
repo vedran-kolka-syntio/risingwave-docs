@@ -218,6 +218,11 @@ const sidebars = {
         id: 'sql/commands/sql-create-sink',
         label: 'Create a sink',
       },
+      {
+        type: 'doc',
+        label: 'PostgreSQL',
+        id: 'guides/sink-to-postgres'
+      },
     ]},
 
     {
