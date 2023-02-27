@@ -219,6 +219,12 @@ h4 {
   transform-origin: center;
 }
 
+.theme-doc-sidebar-menu > .theme-doc-sidebar-item-link-level-1 a {
+  color: var(--ifm-color-emphasis-700);
+  font-family: "Montserrat-Medium";
+  padding-top: 1.4rem;
+}
+
 .menu__link--sublist-caret::after {
   content: "";
   margin-left: auto;
