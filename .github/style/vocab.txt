@@ -1,1 +1,12 @@
-
+Redpanda
+Kinesis
+Astra
+Debezium
+npm
+psycopg
+unnest
+boolean
+smallint
+bigint
+varchar
+casted
