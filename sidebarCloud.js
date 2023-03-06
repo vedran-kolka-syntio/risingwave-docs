@@ -92,11 +92,6 @@ module.exports = {
               type: "doc",
               id: "tenant-stop-and-delete-tenants",
             },
-            {
-              type: "doc",
-              id: "tenant-advanced-settings",
-              label: "Advanced settings",
-            },
           ],
         },
         {
