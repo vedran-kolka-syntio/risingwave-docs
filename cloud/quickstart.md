@@ -72,7 +72,7 @@ To connect via the console:
 
 For terminal enthusiasts, you can still connect to a tenant through your local terminal.
 
-1. [Install `psql` in your environment](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/).
+1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
 
     `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
