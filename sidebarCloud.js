@@ -85,8 +85,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "tenant-check-running-status",
-              label: "Check running status",
+              id: "tenant-check-status-and-metrics",
+              label: "Check status and metrics",
             },
             {
               type: "doc",
