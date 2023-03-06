@@ -36,6 +36,8 @@ To enter the tenant details page and check the information such as current activ
 
 :::info
 The metrics of a tenant include CPU usage, memory usage, throughput, storage usage, and network.
+
+[To be checked]
 :::
 
 You can specify the time range of the metrics.
