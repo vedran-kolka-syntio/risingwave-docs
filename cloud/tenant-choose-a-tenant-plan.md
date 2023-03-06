@@ -40,15 +40,18 @@ Tenants created under the free tier plan will expire after five days. Do not cho
 
 <TabItem value="customized" label="Customized plan">
 
-If you signed up for early access and received an invitation code, you can select the **Customized plan for invited users**.
+If you signed up for early access and received an invitation code, you can select the **Customized plan for invited users**. Redeem your invitation code to continue.
 
-Please talk to our sales at [https://www.risingwave-labs.com/contact/](https://www.risingwave-labs.com/contact/) to get your invitation code. 
+The customized plan offers the flexibility of configuring the resources to better suit your demand.
 
-Redeem your invitation code to continue.
+:::tip
+
+Get in touch with our sales at [risingwave-labs.com/contact](https://www.risingwave-labs.com/contact/) to acquire an invitation code.
+
+:::
 
 [screenshot]
 
-The customized plan offers the flexibility of configuring the resources to better suit your demand.
 
 #### Configuration
 
@@ -63,11 +66,8 @@ The customized plan offers the flexibility of configuring the resources to bette
 - **Configure nodes**
 
     Configure the instance resources and numbers of each node according to your actual needs.
-    - Compute node —
-    - Frontend node —
-    - Meta node —
-    - Compactor node —
-    - ETCD —
+    
+    To learn more about the nodes, see the [architecture of RisingWave](https://www.risingwave.dev/docs/current/architecture/).
 
 </TabItem>
 
