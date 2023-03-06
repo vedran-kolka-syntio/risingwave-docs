@@ -5,7 +5,7 @@ description: Connect to a tenant using the console or terminal.
 slug: /tenant-connect-to-a-tenant
 ---
 
-After [getting a tenant up and running](../tenant-manage-tenants#create-a-tenant), you need to connect to it so that you can interact with RisingWave.
+After [getting a tenant up and running](tenant-manage-tenants.md#create-a-tenant), you need to connect to it so that you can interact with RisingWave.
 
 You can choose from the following two ways to connect to your tenant.
 
