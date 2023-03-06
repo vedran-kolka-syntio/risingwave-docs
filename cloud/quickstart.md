@@ -50,6 +50,10 @@ After getting a tenant up and running, you need to connect to it so that you can
 
 You can choose from the following two ways to connect to your tenant.
 
+<Tabs>
+
+<TabItem value="console" label="Console">
+
 The console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
 
 
@@ -61,15 +65,16 @@ To connect via the console:
 2. Create a new database user.
 
 3. Log in to the database as the database user you just created.
- 
-    
----
 
+</TabItem>
+ 
+<TabItem value="terminal" label="Terminal">
 
 For terminal enthusiasts, you can still connect to a tenant through your local terminal.
 
 1. [Install `psql` in your environment](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/).
-`psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
+
+    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
 2. Select the **Tenants** tab.
     
@@ -88,6 +93,10 @@ For terminal enthusiasts, you can still connect to a tenant through your local t
     
     
 6. Log in with the password of the database user.
+
+</TabItem>
+
+</Tabs>
 
 </TabItem>
 
