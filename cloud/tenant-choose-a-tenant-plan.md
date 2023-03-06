@@ -1,11 +1,9 @@
 ---
 id: tenant-choose-a-tenant-plan
 title: Choose a tenant plan
-description: hello
+description: Choose a plan when you create a tenant.
 slug: /tenant-choose-a-tenant-plan
 ---
-
-# Choose a tenant plan
 
 When creating a tenant, you can choose a tenant plan and configure tenant resources according to your needs.
 
