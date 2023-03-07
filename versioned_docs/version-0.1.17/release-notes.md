@@ -9,8 +9,99 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.1.17
 
-<card title="Choose a tenant plan" content="When creating a tenant, you can choose a tenant plan 
-and configure tenant resources according to your needs."/>
+<!-- Example1: "links" attribute has the highest level of authority.  -->
+
+<card
+maxWidth="300px"
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>
+
+<!-- Example2: "doc" attribute can redirect to the kernel docs with hover effect -->
+
+<card
+maxWidth="300px"
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+/>
+
+<!-- Example3: "url" attribute can redirect to the external link with hover effect -->
+
+<card
+maxWidth="300px"
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+url="https://www.risingwave.cloud"
+/>
+
+<!-- Example4: card with grids, 3 cols and 3 cards-->
+
+<grid
+nums={3}
+cols={3}
+children={[
+<card
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>,
+<card
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>,
+<card
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>
+]}
+/>
+
+<grid
+nums={2}
+cols={2}
+children={[
+<card
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>,
+<card
+title="Choose a tenant plan"
+content="When creating a tenant, you can choose a tenant plan
+and configure tenant resources according to your needs."
+doc="get-started"
+links={[
+{text:"docs", docs:"get-started"},
+{text:"cloud", url:"https://www.risingwave.cloud"}]}
+/>
+]}
+/>
 
 This version was released on February 28, 2023
 

@@ -22,6 +22,7 @@ import Admonition from "@theme/Admonition";
 import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
 import OutlinedCard from "@theme/OutlinedCard";
+import ResponsiveGrid from "@theme/ResponsiveGrid";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -84,5 +85,6 @@ const MDXComponents = {
   drawer: Drawer,
   voteNotify: Capsule,
   card: OutlinedCard,
+  grid: ResponsiveGrid,
 };
 export default MDXComponents;
