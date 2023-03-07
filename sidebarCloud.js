@@ -176,22 +176,22 @@ module.exports = {
             {
               type: "link",
               label: "Update your profile",
-              href: "/cloud/account-manage-your-account/?task=1",
+              href: "/cloud/account-manage-your-account/?task=update-profile",
             },
             {
               type: "link",
               label: "Change account password",
-              href: "/cloud/account-manage-your-account/?task=2",
+              href: "/cloud/account-manage-your-account/?task=change-password",
             },
             {
               type: "link",
               label: "Delete your account",
-              href: "/cloud/account-manage-your-account/?task=3",
+              href: "/cloud/account-manage-your-account/?task=delete-account",
             },
             {
               type: "link",
               label: "Switch accounts",
-              href: "/cloud/account-manage-your-account/?task=4",
+              href: "/cloud/account-manage-your-account/?task=switch-accounts",
             },
           ],
         },

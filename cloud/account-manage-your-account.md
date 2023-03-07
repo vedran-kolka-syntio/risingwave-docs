@@ -8,7 +8,7 @@ slug: /account-manage-your-account
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs queryString="operation">
+<Tabs queryString="task">
 
 <TabItem value="update-profile" label="Update your profile">
 
