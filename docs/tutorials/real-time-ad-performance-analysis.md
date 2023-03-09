@@ -129,7 +129,7 @@ In this tutorial, we'll create two materialized views, one for the standard CTR 
 
 ### Set up a materialized view for standard CTR
 
-Let's look at the materialized view for standard CTRs first. With this materialized view, we count the impressions and clicks separately, join them on `ad_id`, and calculate CTR based on the latest impressions and clicks.
+Let's look at the materialized view for standard CTR first. With this materialized view, we count the impressions and clicks separately, join them on `ad_id`, and calculate CTR based on the latest impressions and clicks.
 
 ```sql
 CREATE MATERIALIZED VIEW ad_ctr AS

@@ -13,7 +13,7 @@ A streaming system can be beneficial in this scenario. It monitors metric perfor
 
 <img
   src={require('../images/server_perf_architecture.png').default}
-  alt="Relations between cdn servers and devops"
+  alt="Relations between CDN servers and DevOps"
 />
 
 In this tutorial, you will learn how to automate anomaly detection from streams of system performance metrics with RisingWave. We have set up a demo cluster for this tutorial, so you can easily try it out.
@@ -61,7 +61,7 @@ Now let's connect to RisingWave so that we can manage data streams and perform d
 ```shell
 psql -h localhost -p 4566 -d dev -U root
 ```
-Now create two separate sources. The first is to track the metrics of network interface cards (NICs), and the second is the metrics stream that tracks the transmission control protocol's (TCP) performance.
+Now create two separate sources. The first is to track the metrics of network interface cards (NIC), and the second is the metrics stream that tracks the performance of the transmission control protocol (TCP).
 
 ```sql
 CREATE SOURCE nics_metrics (
@@ -177,7 +177,7 @@ RisingWave supports creating materialized views based on materialized views. Mat
   alt="MV on MV example"
 />
 
-The following three materialized views use high_util_tcp_metrics as their source. The resulting materialized views include detected anomalies of different incidents. An anomaly is detected when the corresponding metric value for an incident is above or below a specific threshold.
+The following three materialized views use `high_util_tcp_metrics` as their source. The resulting materialized views include detected anomalies of different incidents. An anomaly is detected when the corresponding metric value for an incident is above or below a specific threshold.
 
 The first materialized view queries retransmission timeouts.
 

@@ -169,7 +169,7 @@ Here is an example result.
 2022-10-19 11:39:00	| 2
 ```
 
-The second materialized view will track each streamer’s unique viewers every minute. We will use the tumble function to map each event into a one-minute window and then group by the room_id to each streamer’s unique viewers.
+The second materialized view will track each streamer’s unique viewers every minute. We will use the tumble function to map each event into a one-minute window and then group by the `room_id` to each streamer’s unique viewers.
 
 ```sql
 CREATE MATERIALIZED VIEW room_user_visit_1min AS

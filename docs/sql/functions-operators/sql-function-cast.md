@@ -4,7 +4,7 @@ slug: /sql-function-cast
 title: Cast functions and operators
 ---
 
-Use the `cast` function and operator to convert a value to a specifc type.
+Use the `cast` function and operator to convert a value to a specific type.
 
 ## Syntax
 

@@ -106,7 +106,7 @@ This tutorial will create a materialized view that tracks how often each hashtag
 
 To do so, start by extracting all the hashtags used within a tweet by using the `regexp_matches` function. For instance, if given the following tweet:
 
->Struggling with the high cost of scaling? Fret not! [#RisingWave](https://twitter.com/hashtag/RisingWave?src=hashtag_click) cares about performance and cost-efficiency. We use a tiered architecture that fully utilizes the [#cloud](https://twitter.com/hashtag/cloud?src=hashtag_click) resources to give the users fine-grained control over cost and performance.
+>Struggling with the high cost of scaling? Fret not. [#RisingWave](https://twitter.com/hashtag/RisingWave?src=hashtag_click) cares about performance and cost-efficiency. We use a tiered architecture that fully utilizes the [#cloud](https://twitter.com/hashtag/cloud?src=hashtag_click) resources to give the users fine-grained control over cost and performance.
 
 The `regexp_matches` function will find all the text in the tweet that matches the RegEx pattern `#\w+`. This extracts all the hashtags from the tweet and stores them in an array.
 

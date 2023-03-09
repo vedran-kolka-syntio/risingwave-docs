@@ -127,9 +127,9 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 
 Trying to track how a specific metric changes over time without a dashboard is difficult so we will use Grafana to visualize the metrics to make this easier.
 
-Grafana is packaged in the demo cluster and running. To visit Grafana, enter `127.0.0.1:3001` in your web browser. Since RisingWave is Postgres-compatible, RisingWave directly connects to Grafana with the built-in [Postgres connector](https://grafana.com/docs/grafana/latest/datasources/postgres/). 
+Grafana is packaged in the demo cluster and running. To visit Grafana, enter `127.0.0.1:3001` in your web browser. Since RisingWave is PostgreSQL-compatible, RisingWave directly connects to Grafana with the built-in [PostgreSQL connector](https://grafana.com/docs/grafana/latest/datasources/postgres/). 
 
-To add RisingWave as a Postgres data source:
+To add RisingWave as a PostgreSQL data source:
 
 1. Go to **Configuration > Data Sources**. 
 2. Click **Add data source** and select PostgreSQL. 
