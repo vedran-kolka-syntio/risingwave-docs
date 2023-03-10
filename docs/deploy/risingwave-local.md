@@ -117,3 +117,15 @@ psql -h localhost -p 4566 -d dev -U root
 ```
     
 You can now [connect a streaming source to RisingWave](/sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+
+## Optional: Enable the connector node
+
+The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases. 
+
+To start the connector node, download the most recent .tar package from <https://github.com/risingwavelabs/risingwave-connector-release>.
+
+Next, unzip the package and run the following code to enable the connector node.
+
+```terminal
+./start-service.sh
+```
