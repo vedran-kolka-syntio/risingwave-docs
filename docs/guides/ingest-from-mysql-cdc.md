@@ -152,7 +152,6 @@ The connector node is enabled by default in this docker-compose configuration. T
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-local.md#optional-enable-the-connector-node).
 
-
 ### Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
