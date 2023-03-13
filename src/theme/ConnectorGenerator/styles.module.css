@@ -1,0 +1,24 @@
+label.labelText {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #363A40;
+    margin-bottom: 0.5rem;
+}
+
+label.radioLabel {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    color: #363A40;
+    padding-left: 1rem;
+}
+
+
+div.header {
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 29px;
+    color: #484964;
+}

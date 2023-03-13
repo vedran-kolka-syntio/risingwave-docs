@@ -11,6 +11,8 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 This version was released on February 28, 2023
 
+<generator />
+
 ### Main changes
 
 #### Administration
