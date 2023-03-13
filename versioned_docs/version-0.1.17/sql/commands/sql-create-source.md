@@ -186,3 +186,7 @@ Syntax:
 ```sql
 ROW FORMAT MAXWELL
 ```
+
+## Connector Generator
+
+<generator />
