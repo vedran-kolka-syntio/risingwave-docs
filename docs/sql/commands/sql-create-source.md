@@ -180,9 +180,27 @@ ROW FORMAT DEBEZIUM_JSON
 
 ### Maxwell JSON
 
-When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name ((`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 ```sql
 ROW FORMAT MAXWELL
+```
+
+### Upsert JSON
+
+When consuming data in JSON from Kafka topics, the data format needs to be specified as `UPSERT_JSON`. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the key already exists, or updated if the key does not exist. If the value field is null, the row will be deleted.
+
+Syntax:
+```sql
+ROW FORMAT UPSERT_JSON
+```
+
+### Upsert AVRO
+
+When consuming data in Avro from Kafka topics, the data format needs to be specified as `UPSERT_AVRO`. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the key already exists, or updated if the key does not exist. If the value field is null, the row will be deleted.
+
+Syntax:
+```sql
+ROW FORMAT UPSERT_AVRO
 ```
