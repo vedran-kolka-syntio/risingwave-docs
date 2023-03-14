@@ -10,6 +10,7 @@ jobs:
       - uses: errata-ai/vale-action@reviewdog
         with:
           files: '["docs", "versioned_docs"]'
+          version: 2.17.0
           fail_on_error: false
           reporter: github-pr-check
           filter_mode: nofilter
