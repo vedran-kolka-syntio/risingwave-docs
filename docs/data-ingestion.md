@@ -26,15 +26,15 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 
 | Connector | Version | Format | Materialized? | Limitations |
 |---------|---------|---------|---------|---------|
-|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
-|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized| |
-|[Pulsar](/create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), Debezium AVRO, [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json), Upsert JSON, Upsert AVRO|	Materialized & non-materialized| |
+|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |Materialized & non-materialized| |
+|[Pulsar](/create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)|	Materialized & non-materialized| |
 |[Astra Streaming](./guides/connector-astra-streaming.md)|Latest	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
-|[Kinesis](/create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Kinesis](/create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)|	Materialized & non-materialized| |
 |[PostgreSQL CDC](/guides/ingest-from-pg-cdc)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 |[MySQL CDC](/guides/ingest-from-mysql-cdc)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 |[CDC via Kafka](/create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)| Materialized only | Must have primary key|
-|[Amazon S3](/create-source/create-source-s3.md)| Latest |CSV| |
+|[Amazon S3](/create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| |
 |[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
 
 :::note
