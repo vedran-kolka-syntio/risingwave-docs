@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -39,7 +40,7 @@ function ConnectorGenerator({ }: Props) {
   const [connector, setConnectoer] = useState("Kafka")
 
   const [name, setName] = useState("")
-
+  const [topic, setTopic] = useState("")
   const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConnectorType((event.target as HTMLInputElement).value as ConnectorType);
   };
@@ -51,7 +52,7 @@ function ConnectorGenerator({ }: Props) {
 
 
   return (
-    <>
+    <Box className={styles.mainContainer}>
       <FormControl className={styles.formContainer}>
         <FormLabel id="demo-controlled-radio-buttons-group" className={styles.labelText}>
           Connector type:
@@ -71,7 +72,7 @@ function ConnectorGenerator({ }: Props) {
         {connectorType === "Source" ? "Create source" : "Create sink"}
       </Typography>
 
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 350 }}>
+      <FormControl variant="standard" sx={{ mt: 1.5, minWidth: 350 }}>
         <InputLabel id="demo-simple-select-standard-label">
           Select connector
         </InputLabel>
@@ -99,8 +100,32 @@ function ConnectorGenerator({ }: Props) {
             setName(event.target.value);
           }}
         />
+        <TextField
+          sx={{
+            marginTop: "1rem",
+          }}
+          variant="standard"
+          id="outlined-controlled"
+          label={`${connectorType} name *`}
+          value={name}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setName(event.target.value);
+          }}
+        />
+        <TextField
+          sx={{
+            marginTop: "1rem",
+          }}
+          variant="standard"
+          id="outlined-controlled"
+          label={`${connectorType} name *`}
+          value={name}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setName(event.target.value);
+          }}
+        />
       </FormControl>
-    </>
+    </Box>
   )
 }
 
