@@ -34,8 +34,9 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 |[PostgreSQL CDC](/guides/ingest-from-pg-cdc)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 |[MySQL CDC](/guides/ingest-from-mysql-cdc)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 |[CDC via Kafka](/create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)| Materialized only | Must have primary key|
-|[Amazon S3](/create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| |
+|[Amazon S3](/create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| | |
 |[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
+|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json) | | |
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
