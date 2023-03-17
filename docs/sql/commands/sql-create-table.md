@@ -67,8 +67,9 @@ export const svg = rr.Diagram(
         rr.Optional(
             rr.Stack(
                 rr.Sequence(
-                    rr.Terminal('WITH'))),
-
+                    rr.Terminal('WITH'),
+            ),
+        ),
         ),
         rr.Terminal(';'),
     )
