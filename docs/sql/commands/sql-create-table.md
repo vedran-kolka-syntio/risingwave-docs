@@ -42,33 +42,22 @@ export const svg = rr.Diagram(
         ),
         rr.Terminal('('),
         rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('col_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Optional(rr.Terminal('PRIMARY KEY')),
-                rr.Optional(rr.Terminal(',')),
-            ),
-            rr.ZeroOrMore(
+            rr.OneOrMore(
                 rr.Sequence(
-                    rr.Terminal(','),
                     rr.NonTerminal('col_name', 'skip'),
                     rr.NonTerminal('data_type', 'skip'),
                     rr.Optional(rr.Terminal('PRIMARY KEY')),
                     rr.Optional(rr.Terminal(',')),
                 ),
+                rr.Terminal(',')
             ),
             rr.Optional(
                 rr.Sequence(
                     rr.Terminal('PRIMARY KEY'),
                     rr.Terminal('('),
-                    rr.NonTerminal('col_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('col_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
+                    rr.OneOrMore(
+                        rr.NonTerminal('col_name', 'skip'),
+                        rr.Terminal(','),
                     ),
                     rr.Terminal(')'),
                 ),
@@ -78,47 +67,10 @@ export const svg = rr.Diagram(
         rr.Optional(
             rr.Stack(
                 rr.Sequence(
-                    rr.Terminal('WITH'),
-                    rr.Terminal('('),
-                    rr.Stack(
-                        rr.Sequence(
-                            rr.Terminal('connector'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('connector_name', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                        rr.OneOrMore(
-                            rr.Sequence(
-                                rr.NonTerminal('field_name', 'skip'),
-                                rr.Terminal('='),
-                                rr.NonTerminal('value', 'skip'),
-                                rr.Terminal(','),
-                            ),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
+                    rr.Terminal('WITH'))),
+
         ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                ),
-            ),
-            rr.Optional(rr.Terminal(';')),
-        ),
+        rr.Terminal(';'),
     )
 );
 
