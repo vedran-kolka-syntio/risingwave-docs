@@ -49,7 +49,7 @@ export const svg = rr.Diagram(
                     rr.Optional(rr.Terminal('PRIMARY KEY')),
                     rr.Optional(rr.Terminal(',')),
                 ),
-                rr.Comment('Alternatively: PRIMARY KEY (col_name, ... )'),
+                rr.Comment('Alternate format: PRIMARY KEY (col_name, ... )'),
             ),
         ),
         rr.Terminal(')'),
