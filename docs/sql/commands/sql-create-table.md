@@ -38,9 +38,9 @@ export const svg = rr.Diagram(
         rr.Sequence(
             rr.Terminal('CREATE TABLE'),
             rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap')
+            rr.NonTerminal('table_name', 'wrap'),
+            rr.Terminal('('),
         ),
-        rr.Terminal('('),
         rr.Stack(
             rr.OneOrMore(
                 rr.Sequence(
@@ -49,7 +49,7 @@ export const svg = rr.Diagram(
                     rr.Optional(rr.Terminal('PRIMARY KEY')),
                     rr.Optional(rr.Terminal(',')),
                 ),
-                rr.Comment('Alternate format: PRIMARY KEY (col_name, ... )'),
+                rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
             ),
         ),
         rr.Terminal(')'),
