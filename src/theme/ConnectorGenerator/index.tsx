@@ -12,49 +12,34 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
+import Component from "mson-react/lib/component";
+import { Connectors, KafkaConnector, Sinks } from "./types";
 
+type ConnectorType = "Source" | "Sink";
 
-type ConnectorType = "Source" | "Sink"
+type Props = {};
 
-type Props = {
-};
+function ConnectorGenerator({}: Props) {
+  const [connectorType, setConnectorType] = useState<ConnectorType>("Source");
+  const [connector, setConnectoer] = useState("Kafka");
 
-const connectors = [
-  "Kafka",
-  "Redpanda",
-  "Pulsar",
-  "Astra Streaming",
-  "Kinesis",
-  "S3",
-  "MySQL CDC",
-  "PostgreSQL CDC"
-]
-
-const sinks = [
-  "Kafka",
-  "JDBC"
-]
-
-function ConnectorGenerator({ }: Props) {
-  const [connectorType, setConnectorType] = useState<ConnectorType>("Source")
-  const [connector, setConnectoer] = useState("Kafka")
-
-  const [name, setName] = useState("")
-  const [topic, setTopic] = useState("")
   const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConnectorType((event.target as HTMLInputElement).value as ConnectorType);
   };
 
-  const handleConnectorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConnectorChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setConnectoer((event.target as HTMLInputElement).value);
   };
-
-
 
   return (
     <Box className={styles.mainContainer}>
       <FormControl className={styles.formContainer}>
-        <FormLabel id="demo-controlled-radio-buttons-group" className={styles.labelText}>
+        <FormLabel
+          id="demo-controlled-radio-buttons-group"
+          className={styles.labelText}
+        >
           Connector type:
         </FormLabel>
         <RadioGroup
@@ -63,8 +48,18 @@ function ConnectorGenerator({ }: Props) {
           value={connectorType}
           onChange={handleTypeChange}
         >
-          <FormControlLabel value="Source" control={<Radio />} label="Source" className={styles.radioLabel} />
-          <FormControlLabel value="Sink" control={<Radio />} label="Sink" className={styles.radioLabel} />
+          <FormControlLabel
+            value="Source"
+            control={<Radio />}
+            label="Source"
+            className={styles.radioLabel}
+          />
+          <FormControlLabel
+            value="Sink"
+            control={<Radio />}
+            label="Sink"
+            className={styles.radioLabel}
+          />
         </RadioGroup>
       </FormControl>
       <Divider light sx={{ marginTop: "1rem" }} />
@@ -72,62 +67,42 @@ function ConnectorGenerator({ }: Props) {
         {connectorType === "Source" ? "Create source" : "Create sink"}
       </Typography>
 
-      <FormControl variant="standard" sx={{ mt: 1.5, minWidth: 350 }}>
+      <FormControl variant="standard" sx={{ mt: 1.5, minWidth: 350 }} fullWidth>
         <InputLabel id="demo-simple-select-standard-label">
           Select connector
         </InputLabel>
         <Select
+          className={styles.selectConnector}
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           value={connector}
           onChange={handleConnectorChange}
           label="Connector"
         >
-          {connectorType === "Source" ?
-            connectors?.map((conn, idx) => <MenuItem value={conn} key={idx}>{conn}</MenuItem>) :
-            sinks?.map((conn, idx) => <MenuItem value={conn} key={idx}>{conn}</MenuItem>)
-          }
+          {connectorType === "Source"
+            ? Connectors?.map((conn, idx) => (
+                <MenuItem value={conn} key={idx}>
+                  {conn}
+                </MenuItem>
+              ))
+            : Sinks?.map((conn, idx) => (
+                <MenuItem value={conn} key={idx}>
+                  {conn}
+                </MenuItem>
+              ))}
         </Select>
-        <TextField
-          sx={{
-            marginTop: "1rem",
-          }}
-          variant="standard"
-          id="outlined-controlled"
-          label={`${connectorType} name *`}
-          value={name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-        />
-        <TextField
-          sx={{
-            marginTop: "1rem",
-          }}
-          variant="standard"
-          id="outlined-controlled"
-          label={`${connectorType} name *`}
-          value={name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-        />
-        <TextField
-          sx={{
-            marginTop: "1rem",
-          }}
-          variant="standard"
-          id="outlined-controlled"
-          label={`${connectorType} name *`}
-          value={name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-        />
+        {connector === "Kafka" && connectorType === "Source" && (
+          <Component
+            className={styles.kafkaConnector}
+            definition={KafkaConnector}
+            onSubmit={({ component }) => {
+              alert(JSON.stringify(component.getValues()));
+            }}
+          />
+        )}
       </FormControl>
     </Box>
-  )
+  );
 }
-
 
 export default ConnectorGenerator;
