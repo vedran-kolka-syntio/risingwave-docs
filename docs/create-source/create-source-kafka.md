@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS source_1 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
@@ -270,7 +270,7 @@ CREATE SOURCE IF NOT EXISTS source_2 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
@@ -289,7 +289,7 @@ CREATE SOURCE IF NOT EXISTS source_3 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
@@ -335,7 +335,7 @@ CREATE TABLE IF NOT EXISTS source_4 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
@@ -373,7 +373,7 @@ CREATE SOURCE IF NOT EXISTS source_5 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS source_6 (
 WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
