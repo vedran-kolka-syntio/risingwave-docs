@@ -207,7 +207,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_1 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.security.protocol='SSL',
@@ -250,7 +250,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_2 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
@@ -269,7 +269,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_3 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
@@ -315,7 +315,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_4 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='SCRAM-SHA-256',
@@ -353,7 +353,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_5 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='GSSAPI',
@@ -403,7 +403,7 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_6 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
+   topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    kafka.scan.startup.mode='earliest',
    properties.sasl.mechanism='OAUTHBEARER',

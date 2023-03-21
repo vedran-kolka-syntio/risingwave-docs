@@ -18,7 +18,7 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='kafka',
    properties.bootstrap.server='broker_address',
-   kafka.topic='topic_address',
+   topic='topic_address',
    format='format'
 );
 ```
@@ -34,7 +34,7 @@ All `WITH` options are required.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
+|topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
 
 ## Examples
@@ -45,7 +45,7 @@ CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
-   kafka.topic='test',
+   topic='test',
    format='append_only'
 )
 ```
@@ -80,7 +80,7 @@ FROM taxi_trips
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
-   kafka.topic='test',
+   topic='test',
    format='append_only'
 )
 

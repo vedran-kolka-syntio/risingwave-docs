@@ -17,7 +17,7 @@ FROM sink_from
 WITH (
    connector='kafka',
    properties.bootstrap.server='broker_address',
-   kafka.topic='topic_address',
+   topic='topic_address',
    format='format'
 );
 ```
@@ -32,7 +32,7 @@ All WITH options are required.
 |sink_from| The source from which data will be output. It can be a materialized source, a materialized view, or a table.|
 |connector| Sink type. Currently, only `‘kafka’` is supported.|
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
+|topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats: `‘append-only’`, `‘debezium’`.|
 
 
