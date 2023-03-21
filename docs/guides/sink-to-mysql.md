@@ -7,6 +7,11 @@ slug: /sink-to-mysql-with-jdbc
 
 This guide will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. MySQL is a commonly used RDS with a JDBC driver and it is available as a cloud database through AWS for easy setup and maintenance. We will show you how to configure MySQL and RisingWave to create a MySQL sink. The configurations for RisingWave when connecting to any JDBC-available database will be the same.
 
+:::note
+
+The supported MySQL versions are 5.7 and 8.0.x.
+
+:::
 
 ## Set up a MySQL database
 

@@ -22,7 +22,7 @@ WITH (
 
 ## Basic Parameters
 
-All WITH options are required except `force_append_only`.
+All WITH options are required except `force_append_only` and `primary_key`.
 
 |Parameter or clause|Description|
 |---|---|
@@ -32,8 +32,9 @@ All WITH options are required except `force_append_only`.
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see [Integrations](../rw-integration-summary.md) for a full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
-|format|Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
-|force_append_only| If `true`, forces the sink to be `append_only`, even if it cannot be.| 
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. </li></ul>|
+|force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.| 
+|primary_key| The primary keys of the sink. Use `,` to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.| 
 |use_transaction| If set to `false`, the connector will use at-least-once processing, allowing for non-atomic writes. This might cause duplicated results. By default, `use_transaction` is `true`.|
 
 ## Examples
@@ -45,7 +46,7 @@ WITH (
    connector='kafka',
    kafka.brokers='localhost:9092',
    kafka.topic='test',
-   format='append_only'
+   format='append-only'
 );
 ```
 
@@ -81,7 +82,7 @@ WITH (
    connector='kafka',
    kafka.brokers='localhost:9092',
    kafka.topic='test',
-   format='append_only'
+   format='append-only'
 );
 
 ```
@@ -133,7 +134,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -172,7 +173,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -187,7 +188,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -229,7 +230,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -263,7 +264,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -309,7 +310,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append_only',
+   format = 'append-only',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'
