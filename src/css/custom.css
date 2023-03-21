@@ -48,7 +48,8 @@ h4 {
 
 @font-face {
   font-family: NotoSansSC;
-  src: local("NotoSansSC"), url(/static/font/NotoSansSC-Regular.otf) format("truetype");
+  src: local("NotoSansSC"),
+    url(/static/font/NotoSansSC-Regular.otf) format("truetype");
   font-weight: normal;
   font-style: normal;
   unicode-range: U+2192;
@@ -64,7 +65,8 @@ h4 {
 
 @font-face {
   font-family: NotoSans-Medium;
-  src: local("NotoSans-Medium"), url(/static/font/NotoSans-Medium.ttf) format("ttf"),
+  src: local("NotoSans-Medium"),
+    url(/static/font/NotoSans-Medium.ttf) format("ttf"),
     url(/static/font/NotoSans-Medium.woff) format("woff");
   font-weight: normal;
   font-style: normal;
@@ -80,7 +82,8 @@ h4 {
 
 @font-face {
   font-family: NotoSans-SemiBold;
-  src: local("NotoSans-SemiBold"), url(/static/font/NotoSans-SemiBold.ttf) format("ttf"),
+  src: local("NotoSans-SemiBold"),
+    url(/static/font/NotoSans-SemiBold.ttf) format("ttf"),
     url(/static/font/NotoSans-SemiBold.woff) format("woff");
   font-weight: normal;
   font-style: normal;
@@ -88,7 +91,8 @@ h4 {
 
 @font-face {
   font-family: NotoSans-ExtraLight;
-  src: local("NotoSans-ExtraLight"), url(/static/font/NotoSans-ExtraLight.ttf) format("ttf"),
+  src: local("NotoSans-ExtraLight"),
+    url(/static/font/NotoSans-ExtraLight.ttf) format("ttf"),
     url(/static/font/NotoSans-ExtraLight.woff) format("woff");
   font-weight: normal;
   font-style: normal;

@@ -1,3 +1,6 @@
+import React, { useState, Fragment } from "react";
+import { OneTyped, OneSlotFactory, sleep } from "react-declarative";
+import { Connectors, Sinks, mapToForm } from "./types";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
@@ -8,18 +11,27 @@ import MenuItem from "@mui/material/MenuItem";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
 import styles from "./styles.module.css";
-import Component from "mson-react/lib/component";
-import { Connectors, KafkaConnector, Sinks } from "./types";
+import CodeBlock from "@theme/CodeBlock";
+import Stack from "@mui/material/Stack";
+import LoadingButton from "@mui/lab/LoadingButton";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 type ConnectorType = "Source" | "Sink";
 
-type Props = {};
+type SourceData = {
+  name?: string;
+  topic?: string;
+  bootstrapServers?: string;
+  scanStartupMode?: string;
+  startupTimestampOffset?: string;
+  [key: string]: string;
+};
 
-function ConnectorGenerator({}: Props) {
+type Props = {};
+export const ConnectorGenerator = ({}: Props) => {
+  const [data, setData] = useState<SourceData>();
   const [connectorType, setConnectorType] = useState<ConnectorType>("Source");
   const [connector, setConnectoer] = useState("Kafka");
 
@@ -32,6 +44,8 @@ function ConnectorGenerator({}: Props) {
   ) => {
     setConnectoer((event.target as HTMLInputElement).value);
   };
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <Box className={styles.mainContainer}>
@@ -91,18 +105,57 @@ function ConnectorGenerator({}: Props) {
                 </MenuItem>
               ))}
         </Select>
-        {connector === "Kafka" && connectorType === "Source" && (
-          <Component
-            className={styles.kafkaConnector}
-            definition={KafkaConnector}
-            onSubmit={({ component }) => {
-              alert(JSON.stringify(component.getValues()));
-            }}
-          />
+
+        {mapToForm.get(`${connectorType}-${connector}`) && (
+          <OneSlotFactory>
+            <Fragment>
+              <OneTyped
+                className={styles.slotContainer}
+                fields={mapToForm.get(`${connectorType}-${connector}`)}
+                change={(newData) => setData(newData)}
+              />
+            </Fragment>
+          </OneSlotFactory>
         )}
       </FormControl>
+      <Stack flexDirection="row" justifyContent="end" my={2}>
+        <LoadingButton
+          loading={loading}
+          loadingPosition="start"
+          startIcon={<RocketLaunchIcon />}
+          variant="outlined"
+          onClick={() => {
+            setLoading(true);
+            sleep(1000).then(() => {
+              setLoading(false);
+            });
+          }}
+        >
+          Generate SQL statement
+        </LoadingButton>
+      </Stack>
+      <CodeBlock language="sql">
+        {`CREATE ${connectorType.toUpperCase()} IF NOT EXISTS ${
+          data?.sourceName || `${connectorType.toLowerCase()}_name`
+        } 
+WITH (
+  connector='${connector.toLowerCase()}',  
+  topic='${data?.topic || "demo_topic"}', 
+  properties.bootstrap.server='${
+    data?.bootstrapServers || "172.10.1.1:9090,172.10.1.2:9090"
+  }', 
+  scan.startup.mode='latest', 
+  scan.startup.timestamp_millis='140000000', 
+  properties.group.id='demo_consumer_name' 
+) 
+ROW FORMAT ${data?.rowFormat || "JSON"} ${
+          data?.message ? "MESAAGE '" + data?.message + "'" : ""
+        }
+ROW SCHEMA LOCATION CONFLUENT
+SCHEMA REGISTRY 'http://127.0.0.1:8081';`}
+      </CodeBlock>
     </Box>
   );
-}
+};
 
 export default ConnectorGenerator;

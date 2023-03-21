@@ -30,3 +30,7 @@ h5.header {
 .selectConnector {
   width: 350px;
 }
+
+.slotContainer {
+  margin-top: 24px;
+}
