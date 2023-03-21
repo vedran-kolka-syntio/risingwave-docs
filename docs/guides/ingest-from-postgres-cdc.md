@@ -249,7 +249,7 @@ export const svg = rr.Diagram(
  |database.name| Name of the database.|
  |schema.name| Optional. Name of the schema. By default, the value is `public`. |
  |table.name| Name of the table that you want to ingest data from. |
- |slot.name| Optional. The slot name for each Postgres source. By default, each slot name will be randomly generated. Each source should have a unique slot name.|
+ |slot.name| Optional. The slot name for each PostgreSQL source. By default, each slot name will be randomly generated. Each source should have a unique slot name.|
 
  #### Data format
 
