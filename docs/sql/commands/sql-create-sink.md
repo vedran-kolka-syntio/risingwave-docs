@@ -3,11 +3,9 @@ id: sql-create-sink
 title: CREATE SINK
 description: Create a sink.
 slug: /sql-create-sink
-
 ---
 
 Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a materialized source, a materialized view, or a table.
-
 
 
 ## Syntax
@@ -50,13 +48,13 @@ rr.Stack(
             rr.Sequence(
                rr.Terminal('connector'),
                rr.Terminal('='),
-               rr.Terminal('\'kafka\''),
+               rr.Terminal('\'connector_name\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
                rr.Terminal('properties.bootstrap.server'),
                rr.Terminal('='),
-               rr.Terminal('\'broker_address\''),
+               rr.Terminal('\'value\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
@@ -149,9 +147,12 @@ WITH (
 
 :::note
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
-:::
+ * [Kafka](../../guides/create-sink-kafka.md) (3.1.0 or later versions)
+ * JDBC-available databases
+   * MySQL
+   * PostgreSQL
 
 
 ## See also
