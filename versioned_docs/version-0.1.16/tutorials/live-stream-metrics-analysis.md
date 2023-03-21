@@ -64,7 +64,7 @@ CREATE SOURCE live_stream_metrics (
     connector = 'kafka',
     topic = 'live_stream_metrics',
     properties.bootstrap.server = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 
