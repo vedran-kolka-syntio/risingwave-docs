@@ -1,0 +1,21 @@
+div[id="#/properties/rowFormat"],
+div[id="#/properties/bootstrapServers"] {
+  width: 50%;
+}
+
+div.MuiAutocomplete-root
+  div.MuiTextField-root:has(
+    label[id="#/properties/rowFormat-input-label"],
+    label[id="#/properties/SSLandSSALSettings-input-label"]
+  ) {
+  width: 50%;
+}
+
+input[id="#/properties/description-input"] {
+  text-align: center;
+}
+
+/* div.MuiGrid-item:has(div[id^="#/properties"]) {
+  margin-top: 4px;
+  margin-bottom: 4px;
+} */

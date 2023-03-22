@@ -1,3 +1,4 @@
+import React, { useState, Fragment } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
@@ -8,18 +9,42 @@ import MenuItem from "@mui/material/MenuItem";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import CodeBlock from "@theme/CodeBlock";
+import Stack from "@mui/material/Stack";
+import LoadingButton from "@mui/lab/LoadingButton";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+
 import styles from "./styles.module.css";
-import Component from "mson-react/lib/component";
-import { Connectors, KafkaConnector, Sinks } from "./types";
+import { Connectors, Sinks } from "./types";
+import { JsonForms } from "@jsonforms/react";
+import {
+  materialRenderers,
+  materialCells,
+} from "@jsonforms/material-renderers";
+import sleep from "../../utils/sleep";
+
+import {
+  kafkaSchema,
+  kafkaUISchema,
+  initialData,
+} from "./schemas/Source-Kafka/Source-Kafka";
+import { mapToSchema, mapToUISchema } from "./schemas/store";
 
 type ConnectorType = "Source" | "Sink";
 
-type Props = {};
+type SourceData = {
+  name?: string;
+  topic?: string;
+  bootstrapServers?: string;
+  scanStartupMode?: string;
+  startupTimestampOffset?: string;
+  [key: string]: string;
+};
 
-function ConnectorGenerator({}: Props) {
+type Props = {};
+export const ConnectorGenerator = ({}: Props) => {
+  const [data, setData] = useState<SourceData>(initialData);
   const [connectorType, setConnectorType] = useState<ConnectorType>("Source");
   const [connector, setConnectoer] = useState("Kafka");
 
@@ -32,6 +57,8 @@ function ConnectorGenerator({}: Props) {
   ) => {
     setConnectoer((event.target as HTMLInputElement).value);
   };
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <Box className={styles.mainContainer}>
@@ -68,41 +95,84 @@ function ConnectorGenerator({}: Props) {
       </Typography>
 
       <FormControl variant="standard" sx={{ mt: 1.5, minWidth: 350 }} fullWidth>
-        <InputLabel id="demo-simple-select-standard-label">
-          Select connector
-        </InputLabel>
-        <Select
-          className={styles.selectConnector}
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={connector}
-          onChange={handleConnectorChange}
-          label="Connector"
-        >
-          {connectorType === "Source"
-            ? Connectors?.map((conn, idx) => (
-                <MenuItem value={conn} key={idx}>
-                  {conn}
-                </MenuItem>
-              ))
-            : Sinks?.map((conn, idx) => (
-                <MenuItem value={conn} key={idx}>
-                  {conn}
-                </MenuItem>
-              ))}
-        </Select>
-        {connector === "Kafka" && connectorType === "Source" && (
-          <Component
-            className={styles.kafkaConnector}
-            definition={KafkaConnector}
-            onSubmit={({ component }) => {
-              alert(JSON.stringify(component.getValues()));
-            }}
+        <Stack sx={{ width: "50%" }} mb={2}>
+          <InputLabel id="demo-simple-select-standard-label">
+            Select connector
+          </InputLabel>
+          <Select
+            fullWidth
+            className={styles.selectConnector}
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={connector}
+            onChange={handleConnectorChange}
+            label="Connector"
+          >
+            {connectorType === "Source"
+              ? Connectors?.map((conn, idx) => (
+                  <MenuItem value={conn} key={idx}>
+                    {conn}
+                  </MenuItem>
+                ))
+              : Sinks?.map((conn, idx) => (
+                  <MenuItem value={conn} key={idx}>
+                    {conn}
+                  </MenuItem>
+                ))}
+          </Select>
+        </Stack>
+
+        {mapToSchema.get(`${connectorType}-${connector}`) && (
+          <JsonForms
+            schema={mapToSchema.get(`${connectorType}-${connector}`)}
+            uischema={mapToUISchema.get(`${connectorType}-${connector}`)}
+            data={data}
+            renderers={materialRenderers}
+            cells={materialCells}
+            onChange={({ data, errors }) => setData(data)}
           />
         )}
       </FormControl>
+      <Stack flexDirection="row" justifyContent="end" my={2}>
+        <LoadingButton
+          loading={loading}
+          loadingPosition="start"
+          startIcon={<RocketLaunchIcon />}
+          variant="outlined"
+          onClick={() => {
+            setLoading(true);
+            sleep(1000).then(() => {
+              setLoading(false);
+            });
+          }}
+        >
+          Generate SQL statement
+        </LoadingButton>
+      </Stack>
+      <CodeBlock language="sql">
+        {`CREATE ${connectorType.toUpperCase()} IF NOT EXISTS ${
+          data?.sourceName || `${connectorType.toLowerCase()}_name`
+        } 
+WITH (
+  connector='${connector.toLowerCase()}',  
+  topic='${data?.topic || "demo_topic"}', 
+  properties.bootstrap.server='${
+    data?.bootstrapServers || "172.10.1.1:9090,172.10.1.2:9090"
+  }', 
+  scan.startup.mode='${data?.scanStartupMode.toLowerCase() || "earliest"}', 
+  scan.startup.timestamp_millis='${
+    data?.startupTimestampOffset || "140000000"
+  }', 
+  properties.group.id='demo_consumer_name' 
+) 
+ROW FORMAT ${data?.rowFormat || "JSON"} ${
+          data?.message ? "MESAAGE '" + data?.message + "'" : ""
+        }
+ROW SCHEMA LOCATION CONFLUENT
+SCHEMA REGISTRY 'http://127.0.0.1:8081';`}
+      </CodeBlock>
     </Box>
   );
-}
+};
 
 export default ConnectorGenerator;

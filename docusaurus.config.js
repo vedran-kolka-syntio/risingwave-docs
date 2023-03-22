@@ -63,22 +63,21 @@ const config = {
               banner: "none",
             },
           },
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
           customCss: [
             require.resolve("./src/css/custom.css"),
             require.resolve("./src/css/buttons.css"),
+            require.resolve("./src/css/jsonforms.css"),
           ],
         },
-        // googleAnalytics: {
-        //   trackingID: 'myID',
-        //   anonymizeIP: true
-        // }
       }),
     ],
   ],
@@ -185,7 +184,8 @@ const config = {
     }),
   customFields: {
     docsUrl: "https://www.risingwave.dev",
-    requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
+    requestUrl:
+      "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
   },
