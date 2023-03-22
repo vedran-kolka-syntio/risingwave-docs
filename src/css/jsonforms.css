@@ -1,21 +1,29 @@
-div[id="#/properties/rowFormat"],
-div[id="#/properties/bootstrapServers"] {
+.jsonForms div[id^="#/properties/rowFormat"],
+.jsonForms div[id^="#/properties/bootstrapServers"],
+.jsonForms div[id^="#/properties/AWSSessionToken"] {
   width: 50%;
 }
 
-div.MuiAutocomplete-root
+.jsonForms
+  div.MuiAutocomplete-root
   div.MuiTextField-root:has(
-    label[id="#/properties/rowFormat-input-label"],
-    label[id="#/properties/SSLandSSALSettings-input-label"]
+    label[id^="#/properties/rowFormat"],
+    label[id^="#/properties/SSLandSSALSettings-input-label"],
+    label[id^="#/properties/description"]
   ) {
   width: 50%;
 }
 
-input[id="#/properties/description-input"] {
+/* .jsonForms input[disabled] {
   text-align: center;
+} */
+
+.jsonForms
+  div.MuiGrid-item:has(div[id^="#/properties"], label[id^="#/properties/"]) {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
-/* div.MuiGrid-item:has(div[id^="#/properties"]) {
-  margin-top: 4px;
-  margin-bottom: 4px;
-} */
+.jsonForms .MuiInput-input.Mui-disabled {
+  text-align: center;
+}

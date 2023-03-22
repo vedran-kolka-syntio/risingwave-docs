@@ -23,11 +23,11 @@ export const kafkaSchema: JsonSchema = {
     bootstrapServers: {
       type: "string",
     },
-    startupMode: {
+    scanStartupMode: {
       type: "string",
       enum: StartupMode,
     },
-    startupTimeOffset: {
+    startupTimestampOffset: {
       type: "string",
     },
     message: {
@@ -83,11 +83,11 @@ export const kafkaUISchema: UISchema = {
       elements: [
         {
           type: "Control",
-          scope: "#/properties/startupMode",
+          scope: "#/properties/scanStartupMode",
         },
         {
           type: "Control",
-          scope: "#/properties/startupTimeOffset",
+          scope: "#/properties/startupTimestampOffset",
         },
       ],
     },
@@ -132,11 +132,12 @@ export const kafkaUISchema: UISchema = {
   ],
 };
 
-export const initialData = {
-  sourceName: "source_name",
+export const kafkaInitialdata = {
+  sourceName: "",
   topic: "",
   bootstrapServers: "",
-  scanStartupMode: "earliest",
-  startupTimestampOffset: "140000000",
+  scanStartupMode: StartupMode[0],
+  startupTimestampOffset: "",
   description: "Please specify one of the following locations:",
+  SSLandSSALSettings: SSLSettings[0],
 };

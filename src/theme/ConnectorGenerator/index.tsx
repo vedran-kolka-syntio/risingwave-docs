@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
@@ -24,12 +24,8 @@ import {
 } from "@jsonforms/material-renderers";
 import sleep from "../../utils/sleep";
 
-import {
-  kafkaSchema,
-  kafkaUISchema,
-  initialData,
-} from "./schemas/Source-Kafka/Source-Kafka";
-import { mapToSchema, mapToUISchema } from "./schemas/store";
+import { kafkaInitialdata } from "./schemas/Source-Kafka/Source-Kafka";
+import { mapToInitialdata, mapToSchema, mapToUISchema } from "./schemas/store";
 
 type ConnectorType = "Source" | "Sink";
 
@@ -44,9 +40,10 @@ type SourceData = {
 
 type Props = {};
 export const ConnectorGenerator = ({}: Props) => {
-  const [data, setData] = useState<SourceData>(initialData);
-  const [connectorType, setConnectorType] = useState<ConnectorType>("Source");
+  const [loading, setLoading] = useState(false);
   const [connector, setConnectoer] = useState("Kafka");
+  const [data, setData] = useState<SourceData>(kafkaInitialdata);
+  const [connectorType, setConnectorType] = useState<ConnectorType>("Source");
 
   const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConnectorType((event.target as HTMLInputElement).value as ConnectorType);
@@ -58,7 +55,13 @@ export const ConnectorGenerator = ({}: Props) => {
     setConnectoer((event.target as HTMLInputElement).value);
   };
 
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setData(mapToInitialdata.get(`${connectorType}-${connector}`));
+  }, [connector, connectorType]);
+
+  useEffect(() => {
+    setConnectoer("Kafka");
+  }, [connectorType]);
 
   return (
     <Box className={styles.mainContainer}>
@@ -95,7 +98,7 @@ export const ConnectorGenerator = ({}: Props) => {
       </Typography>
 
       <FormControl variant="standard" sx={{ mt: 1.5, minWidth: 350 }} fullWidth>
-        <Stack sx={{ width: "50%" }} mb={2}>
+        <Stack sx={{ width: "50%" }} mb={1}>
           <InputLabel id="demo-simple-select-standard-label">
             Select connector
           </InputLabel>
@@ -123,14 +126,16 @@ export const ConnectorGenerator = ({}: Props) => {
         </Stack>
 
         {mapToSchema.get(`${connectorType}-${connector}`) && (
-          <JsonForms
-            schema={mapToSchema.get(`${connectorType}-${connector}`)}
-            uischema={mapToUISchema.get(`${connectorType}-${connector}`)}
-            data={data}
-            renderers={materialRenderers}
-            cells={materialCells}
-            onChange={({ data, errors }) => setData(data)}
-          />
+          <div className="jsonForms">
+            <JsonForms
+              schema={mapToSchema.get(`${connectorType}-${connector}`)}
+              uischema={mapToUISchema.get(`${connectorType}-${connector}`)}
+              data={data}
+              renderers={materialRenderers}
+              cells={materialCells}
+              onChange={({ data, errors }) => setData(data)}
+            />
+          </div>
         )}
       </FormControl>
       <Stack flexDirection="row" justifyContent="end" my={2}>
@@ -138,7 +143,7 @@ export const ConnectorGenerator = ({}: Props) => {
           loading={loading}
           loadingPosition="start"
           startIcon={<RocketLaunchIcon />}
-          variant="outlined"
+          variant="contained"
           onClick={() => {
             setLoading(true);
             sleep(1000).then(() => {
@@ -159,7 +164,7 @@ WITH (
   properties.bootstrap.server='${
     data?.bootstrapServers || "172.10.1.1:9090,172.10.1.2:9090"
   }', 
-  scan.startup.mode='${data?.scanStartupMode.toLowerCase() || "earliest"}', 
+  scan.startup.mode='${data?.scanStartupMode || "earliest"}', 
   scan.startup.timestamp_millis='${
     data?.startupTimestampOffset || "140000000"
   }', 
