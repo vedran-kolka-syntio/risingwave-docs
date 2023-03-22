@@ -1,15 +1,3 @@
-import { Face } from "@mui/icons-material";
-import {
-  TypedField,
-  FieldType,
-  OneTyped,
-  OneSlotFactory,
-  OtherComboSlot,
-  OtherItemsSlot,
-  datetime,
-  sleep,
-} from "react-declarative";
-
 export const Connectors = [
   "Kafka",
   "Redpanda",
