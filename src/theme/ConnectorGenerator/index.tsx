@@ -15,6 +15,7 @@ import Stack from "@mui/material/Stack";
 import LoadingButton from "@mui/lab/LoadingButton";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
+import sleep from "../../utils/sleep";
 import styles from "./styles.module.css";
 import { Connectors, Sinks } from "./types";
 import { JsonForms } from "@jsonforms/react";
@@ -22,7 +23,6 @@ import {
   materialRenderers,
   materialCells,
 } from "@jsonforms/material-renderers";
-import sleep from "../../utils/sleep";
 
 import { kafkaInitialdata } from "./schemas/Source-Kafka/Source-Kafka";
 import { mapToInitialdata, mapToSchema, mapToUISchema } from "./schemas/store";
@@ -128,6 +128,7 @@ export const ConnectorGenerator = ({}: Props) => {
         {mapToSchema.get(`${connectorType}-${connector}`) && (
           <div className="jsonForms">
             <JsonForms
+              key={`${connectorType}-${connector}`}
               schema={mapToSchema.get(`${connectorType}-${connector}`)}
               uischema={mapToUISchema.get(`${connectorType}-${connector}`)}
               data={data}

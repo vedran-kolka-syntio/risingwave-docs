@@ -1,5 +1,7 @@
 .jsonForms div[id^="#/properties/rowFormat"],
+.jsonForms div[id^="#/properties/matchPattern"],
 .jsonForms div[id^="#/properties/bootstrapServers"],
+.jsonForms div[id^="#/properties/serverID"],
 .jsonForms div[id^="#/properties/AWSSessionToken"] {
   width: 50%;
 }
@@ -13,10 +15,6 @@
   ) {
   width: 50%;
 }
-
-/* .jsonForms input[disabled] {
-  text-align: center;
-} */
 
 .jsonForms
   div.MuiGrid-item:has(div[id^="#/properties"], label[id^="#/properties/"]) {

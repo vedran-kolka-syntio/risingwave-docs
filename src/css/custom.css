@@ -132,8 +132,8 @@ body {
   overflow-x: hidden;
 }
 
-table,
-[data-theme="dark"] table {
+table:not(.MuiTable-root),
+[data-theme="dark"] table:not(.MuiTable-root) {
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -145,25 +145,25 @@ table,
   border-spacing: 0px;
 }
 
-thead tr {
+thead:not(.MuiTableHead-root) tr {
   overflow-x: hidden;
 }
 
-thead {
+thead:not(.MuiTableHead-root) {
   top: 55px;
   z-index: 20;
   display: block;
   position: sticky;
 }
 
-tbody {
+tbody:not(.MuiTableBody-root) {
   width: 100%;
   display: block;
   overflow: auto;
   scroll-snap-type: x mandatory;
 }
 
-table thead tr {
+table thead:not(.MuiTableHead-root) tr {
   width: 100%;
   display: block;
   overflow-y: hidden;
@@ -171,24 +171,24 @@ table thead tr {
   -webkit-overflow-scrolling: touch;
 }
 
-thead tr th,
-tbody tr td {
+thead:not(.MuiTableHead-root) tr th,
+tbody:not(.MuiTableBody-root) tr td {
   min-width: 8rem;
   width: 20%;
   max-width: 100%;
   word-break: break-word;
 }
 
-thead tr th:first-child,
-tbody tr td:first-child {
+thead:not(.MuiTableHead-root) tr th:first-child,
+tbody:not(.MuiTableBody-root) tr td:first-child {
   min-width: 12rem;
   width: 10%;
   max-width: 100%;
 }
 
 @media (min-width: 1024px) {
-  thead tr th:first-child,
-  tbody tr td:first-child {
+  thead:not(.MuiTableHead-root) tr th:first-child,
+  tbody:not(.MuiTableBody-root) tr td:first-child {
     min-width: 13rem;
     width: 10%;
     max-width: 100%;
@@ -196,22 +196,22 @@ tbody tr td:first-child {
 }
 
 @media (min-width: 1440px) {
-  thead tr th:first-child,
-  tbody tr td:first-child {
+  thead:not(.MuiTableHead-root) tr th:first-child,
+  tbody:not(.MuiTableBody-root) tr td:first-child {
     min-width: 14rem;
     width: 10%;
     max-width: 100%;
   }
 }
 
-thead tr th:nth-child(2),
-tbody tr td:nth-child(2) {
+thead:not(.MuiTableHead-root) tr th:nth-child(2),
+tbody:not(.MuiTableBody-root) tr td:nth-child(2) {
   width: 30%;
   max-width: 100%;
 }
 
-thead tr th:nth-child(3),
-tbody tr td:nth-child(3) {
+thead:not(.MuiTableHead-root) tr th:nth-child(3),
+tbody:not(.MuiTableBody-root) tr td:nth-child(3) {
   width: 30%;
   max-width: 100%;
 }

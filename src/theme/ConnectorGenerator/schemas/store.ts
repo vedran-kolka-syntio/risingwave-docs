@@ -22,6 +22,16 @@ import {
   kinesisUISchema,
 } from "./Source-Kinesis/Source-Kinesis";
 import { S3InitialData, S3Schema, S3UISchema } from "./Source-S3/Source-S3";
+import {
+  MySQLInitialData,
+  MySQLSchema,
+  MySQLUISchema,
+} from "./Source-MySQL/Source-MySQL";
+import {
+  PostgreSQLInitialData,
+  PostgreSQLSchema,
+  PostgreSQLUISchema,
+} from "./Source-PostgreSQL/Source-PostgreSQL";
 
 type Element = {
   type: string;
@@ -40,13 +50,9 @@ export type UISchema = UISchemaElement & {
   elements: Element[];
 };
 
-type InitialData = {
-  [key: string]: string;
-};
-
 export const mapToSchema = new Map<string, JsonSchema>();
 export const mapToUISchema = new Map<string, UISchemaElement>();
-export const mapToInitialdata = new Map<string, InitialData>();
+export const mapToInitialdata = new Map<string, any>();
 
 mapToSchema.set("Source-Kafka", kafkaSchema);
 mapToUISchema.set("Source-Kafka", kafkaUISchema);
@@ -66,3 +72,9 @@ mapToInitialdata.set("Source-Kinesis", kinesisInitialData);
 mapToSchema.set("Source-S3", S3Schema);
 mapToUISchema.set("Source-S3", S3UISchema);
 mapToInitialdata.set("Source-S3", S3InitialData);
+mapToSchema.set("Source-MySQL CDC", MySQLSchema);
+mapToUISchema.set("Source-MySQL CDC", MySQLUISchema);
+mapToInitialdata.set("Source-MySQL CDC", MySQLInitialData);
+mapToSchema.set("Source-PostgreSQL CDC", PostgreSQLSchema);
+mapToUISchema.set("Source-PostgreSQL CDC", PostgreSQLUISchema);
+mapToInitialdata.set("Source-PostgreSQL CDC", PostgreSQLInitialData);
