@@ -33,10 +33,13 @@
     "clsx": "^1.1.1",
     "d3": "^7.3.0",
     "prism-react-renderer": "^1.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-declarative": "^2.2.114",
+    "react-dom": "^18.2.0",
     "react-tiny-popover": "^7.2.0",
-    "react-toastify": "^8.2.0"
+    "react-toastify": "^8.2.0",
+    "tss-react": "^4.8.2",
+    "xlsx": "^0.18.5"
   },
   "browserslist": {
     "production": [

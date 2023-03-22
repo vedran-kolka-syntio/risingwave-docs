@@ -1,3 +1,15 @@
+import { Face } from "@mui/icons-material";
+import {
+  TypedField,
+  FieldType,
+  OneTyped,
+  OneSlotFactory,
+  OtherComboSlot,
+  OtherItemsSlot,
+  datetime,
+  sleep,
+} from "react-declarative";
+
 export const Connectors = [
   "Kafka",
   "Redpanda",
@@ -27,300 +39,85 @@ const SSLSettings = [
   "SASL/OAUTHBEARER",
 ];
 
-// const kafka = [
-//   {
-//     type: FieldType.Group,
-//     fields: [
-//       {
-//         type: FieldType.Text,
-//         title: "Source Name *",
-//         name: "sourceName",
-//         columns: "6",
-//         isInvalid({ sourceName }) {
-//           if (sourceName === "") {
-//             return "Required";
-//           }
-//           return null;
-//         },
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Topic",
-//         name: "topic",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Bootstrap Servers",
-//         name: "bootstrapServers",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Group,
-//         fields: [
-//           {
-//             type: FieldType.Combo,
-//             title: "Startup mode",
-//             name: "startupMode",
-//             columns: "6",
-//             async itemList() {
-//               await sleep(sleepTime);
-//               return StartupMode;
-//             },
-//             async tr(current) {
-//               await sleep(transTime);
-//               if (StartupMode.includes(current)) {
-//                 return current;
-//               } else {
-//                 return "";
-//               }
-//             },
-//             defaultValue: StartupMode[0],
-//           },
-//           {
-//             type: FieldType.Text,
-//             title: "Startup Timestamp Offset",
-//             name: "startupTimestampOffset",
-//             columns: "6",
-//           },
-//           {
-//             type: FieldType.Combo,
-//             title: "Row Format",
-//             name: "rowFormat",
-//             columns: "6",
-//             async itemList() {
-//               await sleep(sleepTime);
-//               return RowFormat;
-//             },
-//             async tr(current) {
-//               await sleep(transTime);
-//               if (RowFormat.includes(current)) {
-//                 return current;
-//               } else {
-//                 return "";
-//               }
-//             },
-//             defaultValue: RowFormat[0],
-//           },
-//         ],
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Message",
-//         name: "message",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Typography,
-//         placeholder: "Please specify one of the following locations:",
-//         name: "locationHint",
-//         sx: {
-//           color: "#363A40",
-//           lineHeight: "24px",
-//           marginLeft: "2px",
-//         },
-//       },
-//       {
-//         type: FieldType.Group,
-//         fields: [
-//           {
-//             type: FieldType.Text,
-//             title: "Schema Location",
-//             name: "schemaLocation",
-//             columns: "5",
-//           },
-//           {
-//             type: FieldType.Typography,
-//             placeholder: "OR",
-//             name: "locationHint",
-//             columns: "1",
-//             sx: {
-//               textAlign: "center",
-//               margin: "auto",
-//             },
-//           },
-//           {
-//             type: FieldType.Text,
-//             title: "Confluent schema registry URL",
-//             name: "confluentSchemaRegistryURL",
-//             columns: "6",
-//           },
-//         ],
-//       },
-//       {
-//         type: FieldType.Combo,
-//         title: "SSL and SASL settings",
-//         name: "SSLandSASLSettings",
-//         columns: "6",
-//         sx: {
-//           marginTop: "12px",
-//         },
-//         async itemList() {
-//           await sleep(sleepTime);
-//           return SSLSettings;
-//         },
-//         async tr(current) {
-//           await sleep(transTime);
-//           if (SSLSettings.includes(current)) {
-//             return current;
-//           } else {
-//             return "";
-//           }
-//         },
-//         defaultValue: SSLSettings[0],
-//       },
-//     ],
-//   },
-// ];
-
-// const pulsar = [
-//   {
-//     type: FieldType.Group,
-//     fields: [
-//       {
-//         type: FieldType.Text,
-//         title: "Source Name *",
-//         name: "sourceName",
-//         columns: "6",
-//         isInvalid({ sourceName }) {
-//           if (sourceName === "") {
-//             return "Required";
-//           }
-//           return null;
-//         },
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Topic",
-//         name: "topic",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Bootstrap Servers",
-//         name: "bootstrapServers",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Group,
-//         fields: [
-//           {
-//             type: FieldType.Combo,
-//             title: "Startup mode",
-//             name: "startupMode",
-//             columns: "6",
-//             async itemList() {
-//               await sleep(sleepTime);
-//               return StartupMode;
-//             },
-//             async tr(current) {
-//               await sleep(transTime);
-//               if (StartupMode.includes(current)) {
-//                 return current;
-//               } else {
-//                 return "";
-//               }
-//             },
-//             defaultValue: StartupMode[0],
-//           },
-//           {
-//             type: FieldType.Text,
-//             title: "Startup Timestamp Offset",
-//             name: "startupTimestampOffset",
-//             columns: "6",
-//           },
-//           {
-//             type: FieldType.Combo,
-//             title: "Row Format",
-//             name: "rowFormat",
-//             columns: "6",
-//             async itemList() {
-//               await sleep(sleepTime);
-//               return RowFormat;
-//             },
-//             async tr(current) {
-//               await sleep(transTime);
-//               if (RowFormat.includes(current)) {
-//                 return current;
-//               } else {
-//                 return "";
-//               }
-//             },
-//             defaultValue: RowFormat[0],
-//           },
-//         ],
-//       },
-//       {
-//         type: FieldType.Text,
-//         title: "Message",
-//         name: "message",
-//         columns: "6",
-//       },
-//       {
-//         type: FieldType.Typography,
-//         placeholder: "Please specify one of the following locations:",
-//         name: "locationHint",
-//         sx: {
-//           color: "#363A40",
-//           lineHeight: "24px",
-//           marginLeft: "2px",
-//         },
-//       },
-//       {
-//         type: FieldType.Group,
-//         fields: [
-//           {
-//             type: FieldType.Text,
-//             title: "Schema Location",
-//             name: "schemaLocation",
-//             columns: "5",
-//           },
-//           {
-//             type: FieldType.Typography,
-//             placeholder: "OR",
-//             name: "locationHint",
-//             columns: "1",
-//             sx: {
-//               textAlign: "center",
-//               margin: "auto",
-//             },
-//           },
-//           {
-//             type: FieldType.Text,
-//             title: "Confluent schema registry URL",
-//             name: "confluentSchemaRegistryURL",
-//             columns: "6",
-//           },
-//         ],
-//       },
-//       {
-//         type: FieldType.Combo,
-//         title: "SSL and SASL settings",
-//         name: "SSLandSASLSettings",
-//         columns: "6",
-//         sx: {
-//           marginTop: "12px",
-//         },
-//         async itemList() {
-//           await sleep(sleepTime);
-//           return SSLSettings;
-//         },
-//         async tr(current) {
-//           await sleep(transTime);
-//           if (SSLSettings.includes(current)) {
-//             return current;
-//           } else {
-//             return "";
-//           }
-//         },
-//         defaultValue: SSLSettings[0],
-//       },
-//     ],
-//   },
-// ];
-
-// export const mapToForm = new Map<string, TypedField<any, null>[]>();
-
-// mapToForm.set("Source-Kafka", kafka);
-// mapToForm.set("Source-Redpanda", kafka);
-// mapToForm.set("Source-Pulsar", pulsar);
+export const KafkaConnector = {
+  component: "Form",
+  fields: [
+    {
+      name: "name",
+      component: "TextField",
+      required: true,
+      block: false,
+      label: "Source Name",
+    },
+    {
+      name: "topic",
+      component: "TextField",
+      required: true,
+      block: false,
+      label: "Topic",
+    },
+    {
+      name: "bootstrapServers",
+      component: "TextField",
+      required: true,
+      fullWidth: true,
+      label: "Bootstrap Servers",
+    },
+    {
+      name: "startupMode",
+      component: "ChainedSelectField",
+      label: "Startup Mode",
+      fullWidth: true,
+      options: StartupMode,
+    },
+    {
+      name: "startupTimestampOffset",
+      component: "TextField",
+      fullWidth: true,
+      label: "Startup Timestamp Offset",
+    },
+    {
+      name: "rowFormat",
+      component: "ChainedSelectField",
+      required: true,
+      label: "Row Format",
+      fullWidth: true,
+      options: [
+        ...RowFormat,
+        { value: "Debezium JSON", label: "Debezium JSON" },
+        { value: "Maxwell JSON", label: "Maxwell JSON" },
+      ],
+    },
+    {
+      name: "schema",
+      fullWidth: true,
+      component: "TextField",
+      label: "Schema",
+    },
+    {
+      name: "message",
+      component: "TextField",
+      fullWidth: true,
+      label: "Message",
+    },
+    {
+      name: "schemaLocation",
+      component: "TextField",
+      fullWidth: true,
+      label: "Schema Location",
+    },
+    {
+      name: "confluentSchemaRegistryUrl",
+      component: "TextField",
+      fullWidth: true,
+      label: "Confluent Schema Registry URL",
+    },
+    {
+      name: "SSLandSASLSettings",
+      fullWidth: true,
+      component: "ChainedSelectField",
+      label: "SSL and SASL Settings",
+      options: SSLSettings,
+    },
+  ],
+};
