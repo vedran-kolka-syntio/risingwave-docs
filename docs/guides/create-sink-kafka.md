@@ -46,7 +46,7 @@ WITH (
    connector='kafka',
    kafka.brokers='localhost:9092',
    kafka.topic='test',
-   format='append-only'
+   type='append-only'
 );
 ```
 
