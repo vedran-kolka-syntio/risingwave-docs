@@ -26,52 +26,52 @@ import rr from '@theme/RailroadDiagram'
 export const svg = rr.Diagram(
   rr.Stack(
     rr.Sequence(
-      rr.Terminal('UPDATE'),
-      rr.NonTerminal('table_name')
+      rr.Terminal("UPDATE"),
+      rr.NonTerminal("table_name")
     ),
     rr.Sequence(
-      rr.Terminal('SET'),
+      rr.Terminal("SET"),
       rr.Choice(
         rr.OneOrMore(
           rr.Sequence(
-            rr.NonTerminal('col_name'),
-            rr.Terminal('='),
-            rr.NonTerminal('value')
+            rr.NonTerminal("col_name"),
+            rr.Terminal("="),
+            rr.NonTerminal("value")
           ),
-          ','
+          ","
         ),
         rr.Sequence(
-          rr.Terminal('('),
+          rr.Terminal("("),
           rr.OneOrMore(
-            rr.NonTerminal('col_name'),
-            ','
+            rr.NonTerminal("col_name"),
+            ","
           ),
-          rr.Terminal(')'),
-          rr.Terminal('='),
-          rr.Terminal('('),
+          rr.Terminal(")"),
+          rr.Terminal("="),
+          rr.Terminal("("),
           rr.OneOrMore(
-            rr.NonTerminal('value'),
-            ','
+            rr.NonTerminal("value"),
+            ","
           ),
-          rr.Terminal(')')
+          rr.Terminal(")")
         ),
-        ','
+        ","
       )
     ),
     rr.Optional(
       rr.Sequence(
-        rr.Terminal('WHERE'),
-        rr.NonTerminal('condition')
+        rr.Terminal("WHERE"),
+        rr.NonTerminal("condition")
       ),
     ),
     rr.Sequence(
       rr.Optional(
       rr.Sequence(
-        rr.Terminal('RETURNING'),
-        rr.NonTerminal('col_name')
+        rr.Terminal("RETURNING"),
+        rr.NonTerminal("col_name")
       )
     ),
-    rr.Terminal(';')
+    rr.Terminal(";")
     )
   )
 );
