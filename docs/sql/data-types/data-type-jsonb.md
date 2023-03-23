@@ -117,3 +117,9 @@ The following operators represent a transformation process involving extraction,
 `jsonb -> varchar -> jsonb` <br />
 `jsonb ->> int -> varchar` <br />
 `jsonb ->> varchar -> varchar` <br />
+
+
+## Functions
+
+`jsonb_typeof(jsonb) -> varchar` <br />
+`jsonb_array_length(jsonb) -> int`
