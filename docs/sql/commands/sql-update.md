@@ -54,8 +54,7 @@ export const svg = rr.Diagram(
             ","
           ),
           rr.Terminal(")")
-        ),
-        ","
+        )
       )
     ),
     rr.Optional(
