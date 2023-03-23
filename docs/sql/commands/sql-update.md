@@ -32,6 +32,7 @@ export const svg = rr.Diagram(
     rr.Sequence(
       rr.Terminal("SET"),
       rr.Choice(
+        2,
         rr.OneOrMore(
           rr.Sequence(
             rr.NonTerminal("col_name"),
